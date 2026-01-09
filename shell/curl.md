@@ -1,7 +1,8 @@
 # cURL
+
 > Command line tool and library for transferring data with URLs.
 
-Read more about [cURL](https://curl.haxx.se/).
+Read more about cURL at [curl.haxx.se](https://curl.haxx.se/).
 
 ## Table of Contents
 
@@ -12,11 +13,11 @@ Read more about [cURL](https://curl.haxx.se/).
 ## Misc
 
 ```bash
-# Get page content
+# Get HTTP headers for a URL
 curl -I [url]
 
-# Get page content and headers
-curl -u [url]
+# Get page content
+curl [url]
 
 # Download to file
 curl -o [file] [url]
@@ -24,13 +25,13 @@ curl -o [file] [url]
 # Resume download
 curl -L -O -C - [url]
 
-# Display data in JSON for username and password
-curl [url] \ -v -u [username]:[password] | json_pp
+# Send a GET request with basic authentication and pretty-print JSON response
+curl -u [username]:[password] [url] | json_pp
 
-# Post JSON data
-curl [url] \ -d "[json-data]" \ -H "Content-Type: application/json" -X POST \ -v -u {[username]}:{[password]}
+# Post JSON data with authentication
+curl -u [username]:[password] -H "Content-Type: application/json" -d '[json-data]' -X POST [url]
 
-# Get HTTP status code
+# Get HTTP status code only
 curl -LI [url] -o /dev/null -w "%{http_code}\n" -s
 ```
 

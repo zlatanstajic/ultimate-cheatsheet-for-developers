@@ -1,4 +1,5 @@
 # Linux
+
 > Family of open source Unix-like operating systems based on the Linux kernel.
 
 Read more about [Linux](https://www.linux.org/).
@@ -129,7 +130,7 @@ mkdir -p [directory-name]
 cp -R [source-directory] [destination-directory]
 
 # Move directory
-mv [directory-name]
+mv [directory-name] [destination-directory]
 
 # Remove directory
 rm -d [directory-name]
@@ -160,6 +161,12 @@ cp [source-filename] [location-filename]
 
 # Empty file contents
 truncate -s 0 [filename]
+
+# Change file permissions
+chmod [permissions] [filename]
+
+# Change file owner
+chown [user]:[group] [filename]
 ```
 
 [⬆ back to top](#table-of-contents)
@@ -178,6 +185,9 @@ unalias [alias-name]
 
 # Force list of aliases to reload in current session
 source ~/.bashrc
+
+# List all defined aliases
+alias
 ```
 
 [⬆ back to top](#table-of-contents)
@@ -190,6 +200,12 @@ echo -n "example" | base64 -w 0
 
 # base64 decode
 echo "ZXhhbXBsZQ==" | base64 -d
+
+# URL encode
+python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "string to encode"
+
+# URL decode
+python3 -c "import urllib.parse, sys; print(urllib.parse.unquote(sys.argv[1]))" "string%20to%20decode"
 ```
 
 [⬆ back to top](#table-of-contents)

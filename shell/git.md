@@ -1,4 +1,5 @@
 # Git
+
 > Version-control system for tracking changes in source code during software development.
 
 Read more about [Git](https://git-scm.com/).
@@ -34,7 +35,7 @@ git init
 # Set credentials for repository
 git config credential.helper store
 
-# Clone to repository
+# Clone repository
 git clone [repository-url]
 
 # Get differences between files
@@ -108,7 +109,7 @@ git checkout [commit-hash]
 git commit --amend -m "[message-content]"
 git push --force [branch-name]
 
-# Set commit date few days in past
+# Set commit date a few days in the past
 git commit -m "[message-content]" --date="[number-of-days] day ago"
 
 # Revert all commits (including initial)
@@ -161,7 +162,7 @@ git checkout [branch-name]
 git branch [branch-name]
 
 # Clone branch
-git clone --branch [branch-name]
+git clone --branch [branch-name] [repository-url]
 
 # Rename branch (locally)
 git branch -m [old-name] [new-name]
@@ -202,6 +203,17 @@ git config --global --list
 # Set global user
 git config --global user.name  "[username]"
 git config --global user.email "[email]"
+
+# Check global config
+git config --list
+
+# Set local user
+git config user.name "[username]"
+git config user.email "[email]"
+
+# Check local config
+git config --local --list
+
 ```
 
 [⬆ back to top](#table-of-contents)
@@ -213,7 +225,7 @@ git config --global user.email "[email]"
 git remote -v
 
 # Set remote origin URL
-git remote set-url [url-path]
+git remote set-url origin [url-path]
 
 # Change directory and remote path
 git remote set-url --add origin [url-path]
@@ -222,7 +234,7 @@ git remote set-url --add origin [url-path]
 git remote -v
 git remote rm origin
 git remote add origin [url-path]
-git push --set-upstream [url-path]
+git push --set-upstream origin [branch-name]
 
 # Prune all unreachable objects from the remote object database
 git remote prune origin
@@ -258,7 +270,7 @@ git config --get-regexp alias
 # Set alias
 git config --global alias.[alias-name] "[command]"
 
-# Display content of specific alias
+# Remove specific alias
 git config --global --unset alias.[alias-name]
 ```
 
@@ -283,23 +295,22 @@ git config --global --unset alias.[alias-name]
 
 ### Setting Alias
 
-Use *Set alias* line from this cheatsheet to set certain alias.\
-Give name to the alias and paste command of your choice.\
-Here's example how to set `prune-list` alias.
+Use the *Set alias* command above to set a certain alias.
+Give a name to the alias and paste the command of your choice.
+Here's an example of how to set the `prune-list` alias:
 
 ```bash
 git config --global alias.prune-list "!git remote prune origin -n && git prune -n"
 ```
 
-You can always set alias directly inside `.gitcofig` file.\
-That file is located in the home directory.
+You can also set aliases directly inside your `.gitconfig` file, located in your home directory:
 
 ```bash
 # Open .gitconfig file in terminal
 nano ~/.gitconfig
 ```
 
-Change content of the file by adding `[alias]` section (only if not already present) and line of your choice (here is `prune-list` added as example).
+Add or update the `[alias]` section (only if not already present) and add your alias (here is `prune-list` as an example):
 
 ```
 [user]
@@ -307,7 +318,6 @@ Change content of the file by adding `[alias]` section (only if not already pres
     name = [your-name]
 [alias]
     prune-list = !git remote prune origin -n && git prune -n
-
 ```
 
 [⬆ back to top](#table-of-contents)

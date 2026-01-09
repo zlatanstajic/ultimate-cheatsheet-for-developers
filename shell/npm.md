@@ -1,4 +1,5 @@
 # npm
+
 > Default package manager for the JavaScript runtime environment Node.js.
 
 Read more about [npm](https://www.npmjs.com/).
@@ -84,7 +85,7 @@ npm uninstall -g [package-name] --save
 
 ## n
 
-Read more about [n](https://www.npmjs.com/package/n).
+> Node.js version manager. Read more at [n](https://www.npmjs.com/package/n).
 
 ```bash
 # Install n globally
@@ -125,7 +126,7 @@ n ls
 
 ## npx
 
-Read more about [npx](https://www.npmjs.com/package/npx).
+> Run Node.js binaries without installing them globally. Read more at [npx](https://www.npmjs.com/package/npx).
 
 ```bash
 # Kill Node.js on port number

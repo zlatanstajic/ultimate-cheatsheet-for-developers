@@ -1,7 +1,7 @@
 # Composer
 > A Dependency Manager for PHP.
 
-Read more about [Composer](https://getcomposer.org/).
+Read more about Composer at [getcomposer.org](https://getcomposer.org/).
 
 ## Table of Contents
 
@@ -14,44 +14,41 @@ Read more about [Composer](https://getcomposer.org/).
 ## Misc
 
 ```bash
-# Initialize composer
+# Initialize composer in your project
 composer init
 
-# Lists all available commands
+# List all available Composer commands
 composer list
 
-# Update packages
+# Update all dependencies to the latest versions
 composer update
 
-# Update composer autoload file
+# Regenerate the autoload files
 composer dump-autoload
 
-# Open the packages' repository URL or homepage in browser
+# Open the package's repository URL or homepage in your browser
 composer browse
 
-# Clear composer's internal package cache
+# Clear Composer's internal package cache
 composer clear-cache
 
-# Creates new project from a package into given directory
+# Create a new project from a package into a given directory
 composer create-project
 
-# Shows information about packages
+# Show information about installed packages
 composer info
 
-# Shows a list of installed packages that have updates available
+# List installed packages that have updates available
 composer outdated
 
-# Searches for packages
+# Search for packages on Packagist
 composer search
 
-# Validates a composer.json and composer.lock
+# Validate composer.json and composer.lock files
 composer validate
 
-# Executes a vendored binary/script (same as bash [script])
+# Execute a vendored binary/script
 composer exec [script]
-
-# Shows a list of installed packages that have updates available
-composer outdated
 ```
 
 [⬆ back to top](#table-of-contents)
@@ -59,10 +56,10 @@ composer outdated
 ## Version
 
 ```bash
-# Get installed version
+# Show installed Composer version
 composer -v
 
-# Update installed version
+# Update Composer to the latest version
 composer self-update
 ```
 
@@ -71,13 +68,16 @@ composer self-update
 ## Packages
 
 ```bash
-# Install package
-composer install [vendor/package-name]
+# Install all dependencies listed in composer.json
+composer install
 
-# Remove package
+# Install a specific package
+composer require [vendor/package-name]
+
+# Remove a package from the project
 composer remove [vendor/package-name]
 
-# Shows which packages cause the given package to be installed
+# Show which packages require the given package
 composer depends [vendor/package-name]
 ```
 

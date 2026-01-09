@@ -1,15 +1,24 @@
 # Ultimate Cheatsheet for Developers
-> Making everyday's development easier.
+
+> Making everyday development easier.
+
+A curated collection of tips, commands, and resources to speed up and simplify your web development workflow.
 
 ## Main Table of Contents
 
-:brain: [Knowledgebase](knowledgebase/README.md)\
-:heavy_dollar_sign: [Shell](shell/README.md)
+| Name | Description |
+|------|-------------|
+| [:brain: Knowledgebase](knowledgebase/README.md) | Cheatsheets, resources, and curated lists for developers. |
+| [:heavy_dollar_sign: Shell](shell/README.md) | Useful shell commands and scripts for daily development. |
 
 ## Inspiration
 
-Idea behind creation of this repository is making everyday Web Development process faster and easier.
+The goal of this repository is to make the daily web development process faster and easier by providing quick access to essential knowledge and tools.
 
 ## Contribution
 
-You're welcome to contribute to this repository.
+Contributions are welcome! Feel free to open issues or submit pull requests to improve this project.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).

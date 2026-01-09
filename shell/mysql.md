@@ -1,4 +1,5 @@
 # MySQL
+
 > Relational database management system.
 
 Read more about [MySQL](https://www.mysql.com/).
@@ -14,16 +15,16 @@ Read more about [MySQL](https://www.mysql.com/).
 ## Misc
 
 ```bash
-# Login
-mysql -u [username] -p;
+# Login to MySQL
+mysql -u [username] -p
 
-# Get helper
+# Get help inside MySQL shell
 help;
 
 # Get status information from the server
 status;
 
-# Logout
+# Logout from MySQL shell
 exit;
 ```
 
@@ -35,19 +36,22 @@ exit;
 # Show all databases
 show databases;
 
-# Create new database
+# Create a new database
 create database [database-name];
 
-# Select database
+# Select a database to use
 use [database-name];
 
-# Get used database name
+# Get the name of the currently used database
 select database();
 
-# Export database dump (logged out from mysql)
-mysqldump -u [username] -p [database-name] > [filename].sql;
+# Export database dump (run outside MySQL shell)
+mysqldump -u [username] -p [database-name] > [filename].sql
 
-# Delete database
+# Import database dump (run outside MySQL shell)
+mysql -u [username] -p [database-name] < [filename].sql
+
+# Delete a database
 drop database [database-name];
 ```
 
@@ -56,7 +60,7 @@ drop database [database-name];
 ## Tables
 
 ```bash
-# Show all tables
+# Show all tables in the current database
 show tables;
 
 # Show table structure
@@ -64,6 +68,15 @@ describe [table-name];
 
 # Show indexes on a table
 show index from [table-name];
+
+# Create a new table (example)
+create table [table-name] (
+    id int auto_increment primary key,
+    name varchar(255) not null
+);
+
+# Delete a table
+drop table [table-name];
 ```
 
 [⬆ back to top](#table-of-contents)

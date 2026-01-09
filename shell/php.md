@@ -1,4 +1,5 @@
 # PHP
+
 > General-purpose scripting language especially suited to web development.
 
 Read more about [PHP](https://www.php.net/).
@@ -13,14 +14,23 @@ Read more about [PHP](https://www.php.net/).
 ## Misc
 
 ```bash
-# PHP information
+# Show PHP information
 php -i
 
 # Syntax check (lint)
-php -l
+php -l [filename]
 
 # Show configuration file names
 php --ini
+
+# Show PHP version
+php -v
+
+# Show loaded PHP extensions
+php -m
+
+# Show defined PHP constants
+php --rc constants
 ```
 
 [⬆ back to top](#table-of-contents)
@@ -29,13 +39,16 @@ php --ini
 
 ```bash
 # Run with built-in web server
-php -S [addres]:[port]
+php -S [address]:[port]
 
 # Parse and execute file
 php -f [filename]
 
-# Run interactively
+# Run interactively (REPL)
 php -a
+
+# Run code directly from command line
+php -r "echo 'Hello, World!';"
 ```
 
 [⬆ back to top](#table-of-contents)
