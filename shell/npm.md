@@ -29,7 +29,7 @@ npm search [package-name]
 # Clean cached packages
 npm cache clean --force
 
-# Get details of node_modules directory
+# Show funding information for installed packages
 npm fund
 
 # Compose security report
@@ -50,8 +50,17 @@ npm list
 # List outdated packages
 npm outdated
 
+# Install all dependencies from package.json
+npm install
+
+# Clean install (removes node_modules, uses package-lock.json exactly — preferred in CI)
+npm ci
+
 # Install package
 npm install [package-name]
+
+# Install package as dev dependency
+npm install --save-dev [package-name]
 
 # Update package
 npm update [package-name]
@@ -64,6 +73,15 @@ npm install [package-name]@[version]
 
 # Remove extraneous packages
 npm prune
+
+# Run a script defined in package.json
+npm run [script-name]
+
+# Initialize a new project (creates package.json)
+npm init
+
+# Initialize with defaults (no prompts)
+npm init -y
 ```
 
 [⬆ back to top](#table-of-contents)
@@ -78,7 +96,7 @@ npm install npm@latest -g
 npm list -g | grep [package-name]
 
 # Uninstall globally installed package
-npm uninstall -g [package-name] --save
+npm uninstall -g [package-name]
 ```
 
 [⬆ back to top](#table-of-contents)

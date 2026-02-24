@@ -32,7 +32,7 @@ git version
 # Initialize repository
 git init
 
-# Set credentials for repository
+# Set credentials for repository (stores in plaintext on disk — use a credential manager in production)
 git config credential.helper store
 
 # Clone repository
@@ -102,12 +102,13 @@ git reset --hard [commit-hash]
 git reset --hard HEAD~[n]
 git push -f
 
-# Undo specific commit
+# Inspect a specific commit (results in detached HEAD — create a branch to keep changes)
 git checkout [commit-hash]
 
 # Rename last commit message
 git commit --amend -m "[message-content]"
-git push --force [branch-name]
+# Prefer --force-with-lease over --force to avoid overwriting others' pushed commits
+git push --force-with-lease [branch-name]
 
 # Set commit date a few days in the past
 git commit -m "[message-content]" --date="[number-of-days] day ago"
@@ -156,9 +157,12 @@ git branch -a
 git branch -r
 
 # Switch to branch
-git checkout [branch-name]
+git switch [branch-name]
 
-# Create branch
+# Create and switch to a new branch
+git switch -c [branch-name]
+
+# Create branch (without switching)
 git branch [branch-name]
 
 # Clone branch
@@ -205,7 +209,7 @@ git config --global user.name  "[username]"
 git config --global user.email "[email]"
 
 # Check global config
-git config --list
+git config --global --list
 
 # Set local user
 git config user.name "[username]"
@@ -247,7 +251,7 @@ git remote prune origin
 ```bash
 # Create a new repository
 git init
-git add *
+git add .
 git commit -m "[message-content]"
 git branch -M [master|main]
 git remote add origin git@github.com:[vendor-name]/[repository-name].git

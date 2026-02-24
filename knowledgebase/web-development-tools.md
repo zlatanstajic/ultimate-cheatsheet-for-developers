@@ -1,6 +1,6 @@
-# Web Development Tools Cheatsheet
+# Web Development Tools
 
-> Useful tools for Web Development.
+> Useful tools for web development.
 
 ## Table of Contents
 
@@ -31,7 +31,7 @@
 | [Time and Date](https://www.timeanddate.com/date/dateadd.html) | Calculate dates and durations. |
 | [Xdebug Wizard](https://xdebug.org/wizard) | Get installation instructions for Xdebug. |
 | [Meta Tags](https://metatags.io/) | Generate and preview meta tags for your website. |
-| [JSON Visio](https://jsonvisio.com/editor) | Visualize JSON data structures. |
+| [JSON Crack](https://jsoncrack.com/editor) | Visualize JSON data structures. |
 | [Crontab Guru](https://crontab.guru/) | Online cron schedule expression editor. |
 | [Software Licenses in Plain English](https://tldrlegal.com/) | Understand software licenses in simple terms. |
 | [GitHub Star History](https://star-history.com/) | Visualize the star growth of GitHub repositories. |
@@ -53,7 +53,7 @@
 
 | Name | Description |
 |------|-------------|
-| [CDN](https://cdnjs.com/) | Free and open source CDN for web libraries. |
+| [cdnjs](https://cdnjs.com/) | Free and open source CDN for web libraries. |
 | [jsDelivr](https://www.jsdelivr.com/) | Fast, reliable, and free CDN for npm, GitHub, and more. |
 
 [⬆ back to top](#table-of-contents)
@@ -79,7 +79,7 @@
 | [GIF optimizer](https://ezgif.com/optimize) | Optimize and compress GIF files. |
 | [Shields](https://shields.io/) | Generate badges for your projects. |
 | [Carbon: Images of Source Code](https://carbon.now.sh/) | Create beautiful images of your source code. |
-| [Markdown Guide](https://guides.github.com/features/mastering-markdown/) | Guide to mastering Markdown syntax. |
+| [Markdown Guide](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) | Guide to mastering Markdown syntax. |
 | [Lorem Picsum](https://picsum.photos/) | Generate random placeholder images. |
 | [Remove Background](https://www.remove.bg/) | Remove backgrounds from images automatically. |
 | [Profile Picture Maker](https://pfpmaker.com/) | Create professional profile pictures. |

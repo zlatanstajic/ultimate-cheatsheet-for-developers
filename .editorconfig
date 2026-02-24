@@ -10,5 +10,15 @@ indent_style = space
 indent_size = 4
 trim_trailing_whitespace = true
 
-[*.sh,*.js,*.css,*.html,*.xml,*.json,*.yml,*.yaml,*.md]
+[*.{sh,js,css,html,xml,json,yml,yaml,md}]
 indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.php]
+indent_size = 4
+max_line_length = 120
+
+[Makefile]
+indent_style = tab

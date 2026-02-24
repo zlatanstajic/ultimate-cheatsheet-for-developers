@@ -1,4 +1,5 @@
 # Composer
+
 > A Dependency Manager for PHP.
 
 Read more about Composer at [getcomposer.org](https://getcomposer.org/).
@@ -8,6 +9,7 @@ Read more about Composer at [getcomposer.org](https://getcomposer.org/).
 * [Misc](#misc)
 * [Version](#version)
 * [Packages](#packages)
+* [Global](#global)
 
 [↩ back to list of cheatsheets](README.md#list-of-cheatsheets)
 
@@ -35,8 +37,11 @@ composer clear-cache
 # Create a new project from a package into a given directory
 composer create-project
 
-# Show information about installed packages
-composer info
+# Show information about all installed packages
+composer show
+
+# Show information about a specific package
+composer show [vendor/package-name]
 
 # List installed packages that have updates available
 composer outdated
@@ -49,6 +54,9 @@ composer validate
 
 # Execute a vendored binary/script
 composer exec [script]
+
+# Run a script defined in composer.json
+composer run [script]
 ```
 
 [⬆ back to top](#table-of-contents)
@@ -57,10 +65,10 @@ composer exec [script]
 
 ```bash
 # Show installed Composer version
-composer -v
+composer -V
 
-# Update Composer to the latest version
-composer self-update
+# Update Composer to the latest stable version (pins to v2)
+composer self-update --2
 ```
 
 [⬆ back to top](#table-of-contents)
@@ -71,14 +79,40 @@ composer self-update
 # Install all dependencies listed in composer.json
 composer install
 
+# Install dependencies for production (skip dev dependencies)
+composer install --no-dev
+
 # Install a specific package
 composer require [vendor/package-name]
+
+# Install a package as a dev dependency
+composer require --dev [vendor/package-name]
 
 # Remove a package from the project
 composer remove [vendor/package-name]
 
 # Show which packages require the given package
 composer depends [vendor/package-name]
+```
+
+[⬆ back to top](#table-of-contents)
+
+---
+
+## Global
+
+```bash
+# Install a package globally
+composer global require [vendor/package-name]
+
+# List globally installed packages
+composer global show
+
+# Update all globally installed packages
+composer global update
+
+# Remove a globally installed package
+composer global remove [vendor/package-name]
 ```
 
 [⬆ back to top](#table-of-contents)

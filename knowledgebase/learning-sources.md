@@ -1,6 +1,6 @@
-# Learning Sources Cheatsheet
+# Learning Sources
 
-> Useful learning sources for Web Development.
+> Useful learning sources for web development.
 
 ## Table of Contents
 
@@ -44,8 +44,8 @@
 
 | Name | Description |
 |------|-------------|
-| [React Getting Started](https://reactjs.org/docs/getting-started.html) | Official React documentation for beginners. |
-| [Next.js Getting Started](https://nextjs.org/docs/getting-started) | Official Next.js getting started guide. |
+| [React Getting Started](https://react.dev/learn) | Official React documentation for beginners. |
+| [Next.js Getting Started](https://nextjs.org/docs/getting-started/installation) | Official Next.js getting started guide. |
 | [Introduction to TypeScript](https://dev.to/shaan_alam/introduction-to-typescript-7lg) | Beginner's introduction to TypeScript. |
 
 [⬆ back to top](#table-of-contents)
@@ -55,8 +55,5 @@
 | Name | Description |
 |------|-------------|
 | [Laravel Community Portal](https://laravel.io/) | Official Laravel community and Q&A. |
-| [Laravel Quick Tips (PDF)](https://laraveldaily.com/wp-content/uploads/2020/04/laravel-tips-2020-04.pdf) | PDF with quick tips for Laravel developers. |
-| [Laravel 9 Docs](https://laravel.com/docs/9.x/installation) | Official documentation for Laravel 9. |
-| [Lumen 8 Docs](https://lumen.laravel.com/docs/8.x) | Official documentation for Lumen 8. |
 
 [⬆ back to top](#table-of-contents)

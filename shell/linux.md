@@ -9,6 +9,7 @@ Read more about [Linux](https://www.linux.org/).
 * [Misc](#misc)
 * [Useful](#useful)
 * [Advanced Package Tool](#advanced-package-tool)
+* [Services](#services)
 * [Directory](#directory)
 * [File](#file)
 * [Aliases](#aliases)
@@ -56,10 +57,10 @@ uptime
 
 ```bash
 # Install & run OS configuration tools
-apt-get install dconf-tools && dconf-editor
+apt install dconf-tools && dconf-editor
 
-# Apache server log location
-/var/log/apache2/error.log
+# Follow Apache error log live
+tail -f /var/log/apache2/error.log
 
 # List of apt sources
 nano /etc/apt/sources.list
@@ -81,29 +82,68 @@ tree -a
 # Search packages
 apt-cache search [package-name]
 
-# Install app
-apt install [app-name]
+# Install package
+apt install [package-name]
 
-# Remove app
-apt remove [app-name]
+# Remove package
+apt remove [package-name]
 
-# Update apt
+# Remove package and its configuration files
+apt purge [package-name]
+
+# Update package index
 apt update
 
-# List upgradable files
+# List upgradable packages
 apt list -u
 
-# Upgrade apt
+# Upgrade all packages
 apt upgrade
 
-# Clean apt
+# Clean downloaded package files
 apt autoclean
+
+# Remove unused dependencies
+apt autoremove
 
 # Remove repository
 add-apt-repository -r ppa:[ppa-to-remove]
 
-# Update key for repository
-apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys [key]
+# Add a signed repository key (modern approach; apt-key is deprecated since Ubuntu 22.04)
+curl -fsSL [key-url] | sudo gpg --dearmor -o /etc/apt/keyrings/[keyring-name].gpg
+```
+
+[⬆ back to top](#table-of-contents)
+
+## Services
+
+```bash
+# Start a service
+systemctl start [service-name]
+
+# Stop a service
+systemctl stop [service-name]
+
+# Restart a service
+systemctl restart [service-name]
+
+# Reload service configuration without restart
+systemctl reload [service-name]
+
+# Show service status
+systemctl status [service-name]
+
+# Enable service to start on boot
+systemctl enable [service-name]
+
+# Disable service from starting on boot
+systemctl disable [service-name]
+
+# List all running services
+systemctl list-units --type=service --state=running
+
+# Check which process is listening on a port
+ss -tlnp | grep [port-number]
 ```
 
 [⬆ back to top](#table-of-contents)
@@ -152,6 +192,13 @@ ln -s [destination-file] [destination-shortcut]
 
 # Extract tar file
 tar -vxjf [filename]
+
+# Get first 5 lines in a file
+head -n 5 [file-path]
+
+# Check if website is opened by reading remote Apache access logs
+# Usage: connect to server and follow access log
+# Example: ssh [server] && cd /var/log/apache2 && tail -f *-access.log
 
 # Read file live
 tail -f [filename]

@@ -29,8 +29,8 @@ php -v
 # Show loaded PHP extensions
 php -m
 
-# Show defined PHP constants
-php --rc constants
+# Show defined PHP constants (all categories)
+php -r "print_r(get_defined_constants(true));"
 ```
 
 [⬆ back to top](#table-of-contents)

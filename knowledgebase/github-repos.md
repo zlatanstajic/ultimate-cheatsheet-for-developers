@@ -9,15 +9,13 @@
 - [Cheatsheets](#cheatsheets)
 - [CSS](#css)
 - [JavaScript](#javascript)
-  - [React](#react)
   - [Next.js](#nextjs)
   - [Vue.js](#vuejs)
 - [PHP](#php)
   - [PHP Miscellaneous](#php-miscellaneous)
-  - [PHP Frameworks](#php-frameworks)
+  - [Laravel](#laravel)
   - [PHP Libraries](#php-libraries)
   - [PHP APIs](#php-apis)
-  - [PHP Changes](#php-changes)
 
 [↩ back to list of cheatsheets](README.md#list-of-cheatsheets)
 
@@ -30,10 +28,9 @@
 | [GitHub Profile Views Counter](https://github.com/antonkomarev/github-profile-views-counter) | Count and display profile views on GitHub. |
 | [Dev Joke](https://github.com/shrutikapoor08/devjoke) | Random developer jokes for your projects. |
 | [MailHog](https://github.com/mailhog/MailHog) | Email testing tool for developers. |
-| [Progress Bar](https://github.com/fredericojordan/progress-bar) | Simple CLI progress bar. |
-| [Code Reviews](https://github.com/kamranahmedse/code-reviews) | Code review checklist and best practices. |
+| [Awesome Minimal Sites](https://github.com/kamranahmedse/awesome-minimal-sites) | An opinionated collection of minimal yet beautiful websites. |
 | [GitHub Issue Templates](https://github.com/stevemao/github-issue-templates) | Collection of issue and PR templates. |
-| [AI Commits](https://github.com/Nutlope/aicommits) | Generate commit messages with AI. |
+| [MD Badges](https://github.com/inttter/md-badges) | Generate and display badges for Markdown files. |
 
 [⬆ back to top](#table-of-contents)
 
@@ -78,9 +75,6 @@
 
 | Name | Description |
 | ---- | ----------- |
-| [Bootstrap Select](https://github.com/snapappointments/bootstrap-select) | Custom select for Bootstrap. |
-| [Gentelella Admin Template](https://github.com/ColorlibHQ/gentelella) | Bootstrap 4 admin dashboard template. |
-| [Flatdoc](https://github.com/rstacruz/flatdoc) | Build sites fast from Markdown files. |
 | [Directory Lister](https://github.com/DirectoryLister/DirectoryLister) | Simple PHP directory listing. |
 | [CSS Hexagons](https://github.com/shariarbd/CSS3-Hexagon-Buttons) | CSS3 hexagon buttons. |
 | [CSS Protips](https://github.com/AllThingsSmitty/css-protips) | Tips for writing better CSS. |
@@ -102,22 +96,11 @@
 
 [⬆ back to top](#table-of-contents)
 
-### React
-
-| Name | Description |
-| ---- | ----------- |
-| [React Multi Carousel](https://github.com/YIZHUANG/react-multi-carousel) | Responsive carousel component. |
-| [React Modal Video](https://github.com/appleple/react-modal-video) | Accessible modal video player. |
-| [Flat UI](https://github.com/githubocto/flat-ui) | Flat UI components for React. |
-
-[⬆ back to top](#table-of-contents)
-
 ### Next.js
 
 | Name | Description |
 | ---- | ----------- |
 | [Next SEO](https://github.com/garmeeh/next-seo) | SEO plugin for Next.js. |
-| [Next.js Dark Mode Toggle](https://github.com/robmorieson/next-dark-mode-toggle) | Dark/light mode toggle for Next.js apps. |
 
 [⬆ back to top](#table-of-contents)
 
@@ -128,7 +111,6 @@
 | [Awesome Vue](https://github.com/vuejs/awesome-vue) | Curated list of awesome Vue.js resources. |
 | [Vue Lazyload](https://github.com/hilongjw/vue-lazyload) | Lazyload images in Vue.js apps. |
 | [Vue Multiselect](https://github.com/shentao/vue-multiselect) | Universal select/multiselect component. |
-| [Vue 2 Datepicker](https://github.com/mengxiong10/vue2-datepicker) | Datepicker component for Vue 2. |
 
 [⬆ back to top](#table-of-contents)
 
@@ -145,15 +127,15 @@
 
 [⬆ back to top](#table-of-contents)
 
-### PHP Frameworks
+### Laravel
 
 | Name | Description |
 | ---- | ----------- |
 | [Laravel](https://github.com/laravel/laravel) | Popular PHP framework. |
-| [Laravel Boilerplate](https://github.com/rappasoft/laravel-boilerplate) | Starter kit for Laravel projects. |
-| [Lumen Boilerplate](https://github.com/lloricode/lumen-boilerplate) | Boilerplate for Lumen micro-framework. |
-| [Symfony](https://github.com/symfony/symfony) | High-performance PHP framework. |
-| [CodeIgniter](https://github.com/bcit-ci/CodeIgniter) | Lightweight PHP framework. |
+| [IT Solutions Laravel](https://github.com/itsharppro/it_solutions_laravel) | Laravel examples and solutions. |
+| [OpenAI Laravel](https://github.com/openai-php/laravel) | Laravel integration for the OpenAI API. |
+| [Laravel Cascade Soft Deletes](https://github.com/michaeldyrynda/laravel-cascade-soft-deletes) | Cascade soft deletes for Laravel models. |
+| [Larastan](https://github.com/nunomaduro/larastan) | PHPStan wrapper for Laravel. |
 
 [⬆ back to top](#table-of-contents)
 
@@ -167,14 +149,12 @@
 | [Log4PHP](https://github.com/apache/logging-log4php) | Logging framework for PHP. |
 | [PHPMailer](https://github.com/PHPMailer/PHPMailer) | Popular email sending library. |
 | [Viber Bot PHP](https://github.com/Bogdaan/viber-bot-php) | Viber bot API for PHP. |
-| [CodeIgniter RESTServer](https://github.com/chriskacerguis/codeigniter-restserver) | RESTful API server for CodeIgniter. |
 | [Guzzle](https://github.com/guzzle/guzzle) | PHP HTTP client. |
-| [Larastan](https://github.com/nunomaduro/larastan) | PHPStan wrapper for Laravel. |
-| [Laravel Cascade Soft Deletes](https://github.com/michaeldyrynda/laravel-cascade-soft-deletes) | Cascade soft deletes for Laravel models. |
 | [PHP-DI](https://github.com/PHP-DI/PHP-DI) | Dependency injection container for PHP. |
 | [PHP Memory Profiler](https://github.com/arnaud-lb/php-memory-profiler) | Memory usage profiler for PHP. |
 | [PHPCompatibility](https://github.com/PHPCompatibility/PHPCompatibility) | PHP compatibility checker for PHP_CodeSniffer. |
 | [Clockwork](https://github.com/itsgoingd/clockwork) | PHP development tool for debugging and profiling. |
+| [Pokio](https://github.com/nunomaduro/pokio) | Utility library by Nuno Maduro. |
 
 [⬆ back to top](#table-of-contents)
 
@@ -183,14 +163,5 @@
 | Name | Description |
 | ---- | ----------- |
 | [PHP GitHub API](https://github.com/KnpLabs/php-github-api) | GitHub API client for PHP. |
-
-[⬆ back to top](#table-of-contents)
-
-### PHP Changes
-
-| Name | Description |
-| ---- | ----------- |
-| [PHP 8.0 Changes](https://github.com/thecodeholic/php8.0-changes) | New features and changes in PHP 8.0. |
-| [PHP 8.1 Changes](https://github.com/thecodeholic/php8.1-changes) | New features and changes in PHP 8.1. |
 
 [⬆ back to top](#table-of-contents)

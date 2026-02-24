@@ -9,6 +9,8 @@ Read more about [MySQL](https://www.mysql.com/).
 * [Misc](#misc)
 * [Databases](#databases)
 * [Tables](#tables)
+* [SQL Templates](#sql-templates)
+* [Safety Toggles](#safety-toggles)
 
 [↩ back to list of cheatsheets](README.md#list-of-cheatsheets)
 
@@ -77,6 +79,53 @@ create table [table-name] (
 
 # Delete a table
 drop table [table-name];
+```
+
+[⬆ back to top](#table-of-contents)
+
+## SQL Templates
+
+```sql
+-- Quick select with dynamic filter base (append AND clauses)
+SELECT x.*
+FROM table_name AS x
+WHERE 1=1
+ORDER BY x.id DESC
+LIMIT 10;
+
+-- Show create table syntax
+SHOW CREATE TABLE table_name;
+
+-- Insert template
+INSERT INTO table_name (column1, column2)
+VALUES ('value1', 'value2');
+
+-- Update template
+UPDATE table_name
+SET column1 = 'value1'
+WHERE id = 1;
+
+-- Delete template (WHERE 1=1 base allows safe step-by-step filter building)
+DELETE FROM table_name
+WHERE id = 1;
+```
+
+[⬆ back to top](#table-of-contents)
+
+## Safety Toggles
+
+```sql
+-- Disable safe mode for bulk operations
+SET SQL_SAFE_UPDATES = 0;
+
+-- Enable safe mode
+SET SQL_SAFE_UPDATES = 1;
+
+-- Disable foreign key constraint checks
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- Enable foreign key constraint checks
+SET FOREIGN_KEY_CHECKS = 1;
 ```
 
 [⬆ back to top](#table-of-contents)
