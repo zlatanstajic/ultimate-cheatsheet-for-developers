@@ -12,8 +12,8 @@
 
 ## Utilities
 
-| Name | Description |
-| ---- | ----------- |
-| [Meld](https://meldmerge.org/) | Visual diff and merge tool for file comparisons. |
+|Name|Description|
+|---|---|
+|[Meld](https://meldmerge.org/)|Visual diff and merge tool for file comparisons.|
 
 [⬆ back to top](#table-of-contents)

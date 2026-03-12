@@ -15,8 +15,8 @@ Read more about [Git](https://git-scm.com/).
 * [Remote](#remote)
 * [Repository](#repository)
 * [Alias](#alias)
-    * [Example Alias Commands](#example-alias-commands)
-    * [Setting Alias](#setting-alias)
+  * [Example Alias Commands](#example-alias-commands)
+  * [Setting Alias](#setting-alias)
 
 [↩ back to list of cheatsheets](README.md#list-of-cheatsheets)
 
@@ -316,7 +316,7 @@ nano ~/.gitconfig
 
 Add or update the `[alias]` section (only if not already present) and add your alias (here is `prune-list` as an example):
 
-```
+```text
 [user]
     email = [your-email]
     name = [your-name]

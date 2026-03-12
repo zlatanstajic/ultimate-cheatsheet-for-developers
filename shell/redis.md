@@ -37,7 +37,7 @@ redis-cli ping
 
 The following commands are run inside the `redis-cli` shell:
 
-```
+```bash
 # Authenticate (if password is set)
 AUTH [password]
 
@@ -67,7 +67,7 @@ DEL [key1] [key2] [key3]
 
 ## Strings
 
-```
+```bash
 # Set a key-value pair
 SET [key] [value]
 
@@ -88,7 +88,7 @@ APPEND [key] [value]
 
 ## Hashes
 
-```
+```bash
 # Set a field in a hash
 HSET [key] [field] [value]
 
@@ -106,7 +106,7 @@ HDEL [key] [field]
 
 ## Expiration
 
-```
+```bash
 # Get time to live for a key (in seconds; -1 = no expiry, -2 = key not found)
 TTL [key]
 
@@ -121,7 +121,7 @@ PERSIST [key]
 
 ## Server
 
-```
+```bash
 # Show server information and statistics
 INFO
 
