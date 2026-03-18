@@ -1,0 +1,29 @@
+{
+  "name": "ultimate-cheatsheet-for-developers",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "lint:md": "find . -name \"*.md\" -not -path \"./node_modules/*\" -print0 | xargs -0 -n1 markdownlint",
+    "check:links": "find . -name \"*.md\" -not -path \"./node_modules/*\" -print0 | xargs -0 -n1 markdown-link-check --config .mlc-config.json",
+    "spell": "find . -name \"*.md\" -not -path \"./node_modules/*\" -print0 | xargs -0 -n1 cspell",
+    "test": "npm run lint:md && npm run check:links && npm run spell",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.md": [
+      "markdownlint",
+      "cspell lint --no-progress",
+      "markdown-link-check --config .mlc-config.json"
+    ]
+  },
+  "devDependencies": {
+    "cspell": "^9.7.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.3.3",
+    "markdown-link-check": "^3.11.6",
+    "markdownlint-cli": "^0.48.0"
+  }
+}

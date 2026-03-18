@@ -14,6 +14,8 @@ Read more about [npm](https://www.npmjs.com/).
 
 [↩ back to list of cheatsheets](README.md#list-of-cheatsheets)
 
+> **See also:** [Node](node.md) — JavaScript runtime that npm runs on.
+
 ## Misc
 
 ```bash

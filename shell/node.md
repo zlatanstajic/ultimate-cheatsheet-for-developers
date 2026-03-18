@@ -10,6 +10,8 @@ Read more about [Node](https://nodejs.org/).
 
 [↩ back to list of cheatsheets](README.md#list-of-cheatsheets)
 
+> **See also:** [npm](npm.md) — package manager for Node.js.
+
 ## Misc
 
 ```bash

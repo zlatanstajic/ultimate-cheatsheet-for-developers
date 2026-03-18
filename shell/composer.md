@@ -2,7 +2,7 @@
 
 > A Dependency Manager for PHP.
 
-Read more about Composer at [getcomposer.org](https://getcomposer.org/).
+Read more about [Composer](https://getcomposer.org/).
 
 ## Table of Contents
 
@@ -12,6 +12,8 @@ Read more about Composer at [getcomposer.org](https://getcomposer.org/).
 * [Global](#global)
 
 [↩ back to list of cheatsheets](README.md#list-of-cheatsheets)
+
+> **See also:** [PHP](php.md) — language runtime Composer is built for.
 
 ## Misc
 
@@ -35,7 +37,9 @@ composer browse
 composer clear-cache
 
 # Create a new project from a package into a given directory
-composer create-project
+composer create-project [vendor/package-name] [directory]
+# composer create-project laravel/laravel my-app
+# composer create-project symfony/skeleton my-app
 
 # Show information about all installed packages
 composer show
@@ -67,8 +71,12 @@ composer run [script]
 # Show installed Composer version
 composer -V
 
-# Update Composer to the latest stable version (pins to v2)
+# Update Composer to the latest stable version
+composer self-update
+
+# Pin to a specific major version (v2 or v3)
 composer self-update --2
+composer self-update --3
 ```
 
 [⬆ back to top](#table-of-contents)
@@ -96,8 +104,6 @@ composer depends [vendor/package-name]
 ```
 
 [⬆ back to top](#table-of-contents)
-
----
 
 ## Global
 

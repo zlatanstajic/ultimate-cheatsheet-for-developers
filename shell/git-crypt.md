@@ -12,6 +12,8 @@ Read more about [git-crypt](https://github.com/AGWA/git-crypt) and [managing sec
 
 [↩ back to list of cheatsheets](README.md#list-of-cheatsheets)
 
+> **See also:** [Git](git.md) — version control system git-crypt extends.
+
 ## Git Crypt Operations
 
 ```bash
@@ -46,7 +48,7 @@ git-crypt status -u
 git-crypt export-key [output-path]
 ```
 
-#### .gitattributes
+### .gitattributes
 
 Define which files get encrypted by adding patterns to `.gitattributes`:
 
@@ -97,10 +99,10 @@ gpg --delete-secret-key [key-id]
 
 ## Notes
 
-- **Initialize before committing secrets**: run `git-crypt init` and configure `.gitattributes` before adding any sensitive files.
-- **`export-key` is a symmetric master key**: anyone with this file can decrypt the repository. Store it in a secrets manager (e.g. 1Password, Vault), never in the repo.
-- **Private key export**: treat exported private GPG keys like passwords — encrypt the file at rest and transfer over a secure channel only.
-- **CI/CD**: unlock in CI using the exported symmetric key stored as a secret environment variable:
+* **Initialize before committing secrets**: run `git-crypt init` and configure `.gitattributes` before adding any sensitive files.
+* **`export-key` is a symmetric master key**: anyone with this file can decrypt the repository. Store it in a secrets manager (e.g. 1Password, Vault), never in the repo.
+* **Private key export**: treat exported private GPG keys like passwords — encrypt the file at rest and transfer over a secure channel only.
+* **CI/CD**: unlock in CI using the exported symmetric key stored as a secret environment variable:
 
   ```bash
   echo "$GIT_CRYPT_KEY" | base64 -d > /tmp/git-crypt-key
@@ -108,6 +110,6 @@ gpg --delete-secret-key [key-id]
   rm /tmp/git-crypt-key
   ```
 
-- **Re-encryption**: removing a user does not re-encrypt history. Rotate secrets if a key is compromised.
+* **Re-encryption**: removing a user does not re-encrypt history. Rotate secrets if a key is compromised.
 
 [⬆ back to top](#table-of-contents)

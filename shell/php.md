@@ -11,6 +11,8 @@ Read more about [PHP](https://www.php.net/).
 
 [↩ back to list of cheatsheets](README.md#list-of-cheatsheets)
 
+> **See also:** [Composer](composer.md) — dependency manager for PHP projects.
+
 ## Misc
 
 ```bash

@@ -17,6 +17,8 @@ Read more about [Linux](https://www.linux.org/).
 
 [↩ back to list of cheatsheets](README.md#list-of-cheatsheets)
 
+> **See also:** [cURL](curl.md) — used for downloading files and apt key management.
+
 ## Misc
 
 ```bash
@@ -190,8 +192,14 @@ rm -fv *.[extension]
 # Create shortcut
 ln -s [destination-file] [destination-shortcut]
 
-# Extract tar file
-tar -vxjf [filename]
+# Extract a .tar.bz2 archive (-v verbose, -x extract, -j bzip2, -f file)
+tar -vxjf [filename].tar.bz2
+
+# Extract a .tar.gz archive
+tar -xzf [filename].tar.gz
+
+# Create a .tar.gz archive from a directory
+tar -czf [archive-name].tar.gz [directory]
 
 # Get first 5 lines in a file
 head -n 5 [file-path]
@@ -209,11 +217,16 @@ cp [source-filename] [location-filename]
 # Empty file contents
 truncate -s 0 [filename]
 
-# Change file permissions
+# Change file permissions (octal: owner/group/others — 4=read, 2=write, 1=execute)
 chmod [permissions] [filename]
+# chmod 755 script.sh    → owner: rwx, group: r-x, others: r-x (executable script)
+# chmod 644 file.txt     → owner: rw-, group: r--, others: r-- (readable file)
+# chmod 600 .env         → owner: rw-, group: ---, others: --- (private file)
 
 # Change file owner
 chown [user]:[group] [filename]
+# chown www-data:www-data /var/www/html   → set web server ownership
+# chown -R $USER:$USER ./project          → recursively take ownership
 ```
 
 [⬆ back to top](#table-of-contents)

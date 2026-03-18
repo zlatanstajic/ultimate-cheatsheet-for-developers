@@ -13,6 +13,8 @@ Read more about [PostgreSQL](https://www.postgresql.org/).
 
 [↩ back to list of cheatsheets](README.md#list-of-cheatsheets)
 
+> **See also:** [MySQL](mysql.md) — alternative relational database; [Docker](docker.md) — commonly run as a containerized service.
+
 ## Connection
 
 ```bash
