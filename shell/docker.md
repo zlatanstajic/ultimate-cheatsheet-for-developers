@@ -17,6 +17,8 @@ Read more about [Docker](https://www.docker.com/).
 
 [↩ back to list of cheatsheets](README.md#list-of-cheatsheets)
 
+> **See also:** [MySQL](mysql.md), [PostgreSQL](postgresql.md), [Redis](redis.md) — commonly used as Docker Compose services; [Linux](linux.md) — shell commands useful inside containers.
+
 ## Build
 
 ```bash
@@ -212,15 +214,15 @@ docker compose ps
 
 ## Notes
 
-- **Avoid `sudo`**: add your user to the `docker` group so you do not need `sudo` for every command:
+* **Avoid `sudo`**: add your user to the `docker` group so you do not need `sudo` for every command:
 
   ```bash
   sudo usermod -aG docker $USER
   # Log out and back in for the change to take effect
   ```
 
-- **Never pass secrets via `--build-arg`**: build args are stored in image layer history and visible via `docker history`. Use [BuildKit secrets](https://docs.docker.com/build/secrets/) instead.
-- **`/bin/bash` vs `/bin/sh`**: slim and Alpine-based images often only include `/bin/sh`. Try `/bin/sh` if `/bin/bash` fails in `exec`.
-- **`docker compose` (v2)** is the current standard. If your system still has `docker-compose` (v1), upgrade to Docker Desktop ≥ 4.x or install the Compose plugin.
+* **Never pass secrets via `--build-arg`**: build args are stored in image layer history and visible via `docker history`. Use [BuildKit secrets](https://docs.docker.com/build/secrets/) instead.
+* **`/bin/bash` vs `/bin/sh`**: slim and Alpine-based images often only include `/bin/sh`. Try `/bin/sh` if `/bin/bash` fails in `exec`.
+* **`docker compose` (v2)** is the current standard. If your system still has `docker-compose` (v1), upgrade to Docker Desktop ≥ 4.x or install the Compose plugin.
 
 [⬆ back to top](#table-of-contents)

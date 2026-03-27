@@ -15,10 +15,12 @@ Read more about [Git](https://git-scm.com/).
 * [Remote](#remote)
 * [Repository](#repository)
 * [Alias](#alias)
-    * [Example Alias Commands](#example-alias-commands)
-    * [Setting Alias](#setting-alias)
+  * [Example Alias Commands](#example-alias-commands)
+  * [Setting Alias](#setting-alias)
 
 [↩ back to list of cheatsheets](README.md#list-of-cheatsheets)
+
+> **See also:** [Git Crypt](git-crypt.md) — transparent file encryption for git repositories.
 
 ## Misc
 
@@ -261,6 +263,14 @@ git push -u origin [master|main]
 git remote add origin git@github.com:[vendor-name]/[repository-name].git
 git branch -M [master|main]
 git push -u origin [master|main]
+
+# Replace master with a clean orphan branch (⚠️ destructive — rewrites history)
+git checkout --orphan new-master
+git add .
+git commit -m "[message-content]"
+git branch -D master
+git branch -m new-master master
+git push -f origin master
 ```
 
 [⬆ back to top](#table-of-contents)
@@ -316,7 +326,7 @@ nano ~/.gitconfig
 
 Add or update the `[alias]` section (only if not already present) and add your alias (here is `prune-list` as an example):
 
-```
+```text
 [user]
     email = [your-email]
     name = [your-name]

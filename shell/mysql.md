@@ -14,6 +14,8 @@ Read more about [MySQL](https://www.mysql.com/).
 
 [↩ back to list of cheatsheets](README.md#list-of-cheatsheets)
 
+> **See also:** [PostgreSQL](postgresql.md) — alternative open-source relational database; [Docker](docker.md) — commonly run as a containerized service.
+
 ## Misc
 
 ```bash

@@ -2,7 +2,7 @@
 
 > Command line tool and library for transferring data with URLs.
 
-Read more about cURL at [curl.se](https://curl.se/).
+Read more about [cURL](https://curl.se/).
 
 ## Table of Contents
 
@@ -53,15 +53,13 @@ curl -s --compressed [url]
 
 [⬆ back to top](#table-of-contents)
 
----
-
 ## Notes
 
-- Prefer [`jq`](https://jqlang.github.io/jq/) over `json_pp` for JSON pretty-printing — it is faster, more portable, and supports filtering.
-- Avoid `-X POST` when using `--data` or `-d`; curl infers the method automatically.
-- Prefer bearer token auth (`-H "Authorization: Bearer [token]"`) over `-u user:pass` for API calls to avoid credentials leaking in process listings.
-- Add `--compressed` when the server supports gzip/brotli to reduce transfer size.
-- In shell scripts, always add `--fail` so curl exits with a non-zero code on HTTP 4xx/5xx responses.
-- On Windows/PowerShell, use double quotes carefully; prefer storing JSON in a file and using `--data @file.json`.
+* Prefer [`jq`](https://jqlang.github.io/jq/) over `json_pp` for JSON pretty-printing — it is faster, more portable, and supports filtering.
+* Avoid `-X POST` when using `--data` or `-d`; curl infers the method automatically.
+* Prefer bearer token auth (`-H "Authorization: Bearer [token]"`) over `-u user:pass` for API calls to avoid credentials leaking in process listings.
+* Add `--compressed` when the server supports gzip/brotli to reduce transfer size.
+* In shell scripts, always add `--fail` so curl exits with a non-zero code on HTTP 4xx/5xx responses.
+* On Windows/PowerShell, use double quotes carefully; prefer storing JSON in a file and using `--data @file.json`.
 
 [⬆ back to top](#table-of-contents)
