@@ -6,7 +6,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "lint:md": "find . -name \"*.md\" -not -path \"./node_modules/*\" -print0 | xargs -0 -n1 markdownlint",
+    "lint:md": "find . -name \"*.md\" -not -path \"./node_modules/*\" -print0 | xargs -0 remark --quiet --frail",
     "check:links": "find . -name \"*.md\" -not -path \"./node_modules/*\" -print0 | xargs -0 -n1 markdown-link-check --config .mlc-config.json",
     "spell": "find . -name \"*.md\" -not -path \"./node_modules/*\" -print0 | xargs -0 -n1 cspell",
     "test": "npm run lint:md && npm run check:links && npm run spell",
@@ -14,7 +14,7 @@
   },
   "lint-staged": {
     "*.md": [
-      "markdownlint",
+      "remark --quiet --frail",
       "cspell lint --no-progress",
       "markdown-link-check --config .mlc-config.json"
     ]
@@ -24,6 +24,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.3.3",
     "markdown-link-check": "^3.11.6",
-    "markdownlint-cli": "^0.48.0"
+    "remark-cli": "^12.0.0",
+    "remark-preset-lint-recommended": "^7.0.0"
   }
 }

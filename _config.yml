@@ -1,0 +1,22 @@
+title: Ultimate Cheatsheet for Developers
+description: Curated list of useful resources and cheatsheets for web developers
+theme: jekyll-theme-minimal
+baseurl: "/ultimate-cheatsheet-for-developers"
+url: "https://zlatanstajic.github.io"
+
+markdown: kramdown
+
+# Exclude directories and/or files from the conversion
+exclude:
+  - node_modules
+  - package.json
+  - package-lock.json
+  - .remarkrc.js
+  - .cspell.json
+  - .mlc-config.json
+  - CONTRIBUTING.md
+  - LICENSE.md
+
+# Include specific files
+include:
+  - README.md

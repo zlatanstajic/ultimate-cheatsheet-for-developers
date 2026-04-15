@@ -7,6 +7,8 @@
 - [Miscellaneous](#miscellaneous)
 - [Organizations](#organizations)
 - [Cheatsheets](#cheatsheets)
+- [Claude](#claude)
+- [Apps](#apps)
 - [CSS](#css)
 - [JavaScript](#javascript)
   - [Next.js](#nextjs)
@@ -66,6 +68,36 @@
 |[Public APIs](https://github.com/public-apis/public-apis)|List of free public APIs.|
 |[Developer Roadmap](https://github.com/kamranahmedse/developer-roadmap)|Roadmaps for becoming a developer.|
 |[LinkedIn Skill Assessments Quizzes](https://github.com/Ebazhanov/linkedin-skill-assessments-quizzes)|Practice quizzes for LinkedIn skill assessments.|
+
+[⬆ back to top](#table-of-contents)
+
+---
+
+## Claude
+
+|Name|Description|
+|---|---|
+|[Claude Code Backup](https://github.com/mcpware/claude-code-backup)|Backup tool for Claude Code projects and data.|
+|[Claude Mem](https://github.com/thedotmack/claude-mem)|Memory management system for Claude.|
+|[Claude Code Organizer](https://github.com/mcpware/claude-code-organizer)|Organization and project management for Claude Code.|
+|[Claude How-To](https://github.com/luongnv89/claude-howto)|How-to guides and tutorials for Claude.|
+|[Skills](https://github.com/mattpocock/skills)|Skill definitions and extensions for Claude.|
+|[Anthropics Skills](https://github.com/anthropics/skills)|Public repository for Agent Skills.|
+
+[⬆ back to top](#table-of-contents)
+
+---
+
+## Apps
+
+|Name|Description|
+|---|---|
+|[Apiark](https://github.com/berbicanes/apiark)|Privacy-first API platform.|
+|[Onyx](https://github.com/onyx-dot-app/onyx)|AI Chat with advanced features that works with every LLM.|
+|[TREK](https://github.com/mauriceboe/TREK)|A self-hosted travel/trip planner.|
+|[MkDocs](https://github.com/mkdocs/mkdocs)|Project documentation with Markdown.|
+|[RenderGit](https://github.com/karpathy/rendergit)|Render any git repo into a single static HTML page for humans or LLMs.|
+|[Browsershot](https://github.com/spatie/browsershot)|Convert HTML to an image, PDF or string.|
 
 [⬆ back to top](#table-of-contents)
 
