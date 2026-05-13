@@ -82,7 +82,11 @@
 |[Claude Code Organizer](https://github.com/mcpware/claude-code-organizer)|Organization and project management for Claude Code.|
 |[Claude How-To](https://github.com/luongnv89/claude-howto)|How-to guides and tutorials for Claude.|
 |[Skills](https://github.com/mattpocock/skills)|Skill definitions and extensions for Claude.|
+|[Caveman](https://github.com/JuliusBrussee/caveman)|Claude Code skill that cuts 65% of tokens by talking like caveman.|
+|[Agency Agents](https://github.com/msitarzewski/agency-agents)|Complete AI agency with specialized expert agents with personality, processes, and proven deliverables.|
 |[Anthropics Skills](https://github.com/anthropics/skills)|Public repository for Agent Skills.|
+|[CodeBurn](https://github.com/getagentseal/codeburn)|See where your AI coding tokens go. Interactive TUI dashboard for Claude Code, Codex, and Cursor cost observability.|
+|[RTK](https://github.com/rtk-ai/rtk)|CLI proxy that reduces LLM token consumption by 60-90% on common dev commands. Single Rust binary, zero dependencies.|
 
 [⬆ back to top](#table-of-contents)
 
