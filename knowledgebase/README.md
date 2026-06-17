@@ -1,3 +1,7 @@
+---
+last_reviewed: 2026-03-27
+---
+
 # Knowledgebase
 
 > Cheatsheet for growing knowledgebase.
@@ -12,4 +16,4 @@
 |📖 [Books To Read](books-to-read.md)|Recommended books for software developers.|
 |🐧 [Linux Apps](linux-apps.md)|Recommended Linux applications for developers.|
 
-[↩ back to main table of contents](../README.md#main-table-of-contents)
+[↩ back to main table of contents](../README.md#table-of-contents)

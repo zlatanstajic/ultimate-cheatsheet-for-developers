@@ -1,3 +1,7 @@
+---
+last_reviewed: 2026-03-27
+---
+
 # Linux
 
 > Family of open source Unix-like operating systems based on the Linux kernel.

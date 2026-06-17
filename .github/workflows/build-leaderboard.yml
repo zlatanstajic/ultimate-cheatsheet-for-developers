@@ -1,0 +1,53 @@
+name: Build leaderboard
+
+# Regenerates the README contributor leaderboard from `git shortlog` and
+# auto-commits it as github-actions[bot] (H-1). Authorship changes are not
+# cleanly predictable from a path filter, so this runs on a weekly schedule
+# (offset from check-freshness.yml's Mon 06:00 UTC) plus manual dispatch. The
+# bot commit increments authorship itself, but bot identities are filtered out
+# of the leaderboard (scripts/build-leaderboard.mjs, H-11), so its own runs do
+# not appear and the ±1 human-commit drift is absorbed on the next run.
+on:
+  schedule:
+    # Weekly, Monday 06:30 UTC — offset from check-freshness.yml (Mon 06:00).
+    - cron: "30 6 * * 1"
+  workflow_dispatch:
+
+# Commits README.md to master as github-actions[bot]; [skip ci] avoids retrigger
+# loops. If branch protection is enabled on master it must allow this bot push.
+permissions:
+  contents: write
+
+# Shared with build-search-index.yml and check-freshness.yml: all three bots
+# push to master, so they share one concurrency group to serialize their
+# rebase/push (cancel-in-progress: false → queue rather than cancel) and avoid
+# racing (H-15).
+concurrency:
+  group: auto-commit-master
+  cancel-in-progress: false
+
+jobs:
+  build-leaderboard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # Full history so `git shortlog` sees every commit.
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: lts/*
+          cache: npm
+      - run: npm ci
+      - run: npm run leaderboard
+      - name: Commit updated leaderboard
+        run: |
+          # git diff --quiet guard: only commit/push when the leaderboard changed.
+          git diff --quiet -- README.md || (
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add README.md
+            git commit -m "chore: rebuild contributor leaderboard [skip ci]"
+            git pull --rebase origin master
+            git push
+          )

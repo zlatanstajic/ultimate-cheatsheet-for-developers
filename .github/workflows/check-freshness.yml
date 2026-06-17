@@ -1,0 +1,53 @@
+name: Check freshness
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "knowledgebase/**"
+      - "shell/**"
+      - "scripts/check-freshness.mjs"
+  schedule:
+    # Weekly, Monday 06:00 UTC — surfaces pages aging past 6 months even with no content pushes.
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+# This is a first-class bot-writes-to-master workflow (H-6): it commits and
+# pushes assets/freshness-badge.json to master as github-actions[bot]. If branch
+# protection is enabled on master it must allow this bot to push. The commit
+# message carries [skip ci] so the resulting push does not retrigger CI (or this
+# workflow) in a loop.
+permissions:
+  contents: write
+
+# Shared with build-search-index.yml and build-leaderboard.yml: all three bots
+# push to master, so they share one concurrency group to serialize their
+# rebase/push (cancel-in-progress: false → queue rather than cancel) and avoid
+# racing on the pull --rebase / push (H-15).
+concurrency:
+  group: auto-commit-master
+  cancel-in-progress: false
+
+jobs:
+  check-freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: lts/*
+          cache: npm
+      - run: npm ci
+      # Report-only: the script always exits zero, so this step never gates the workflow.
+      - run: npm run check:freshness
+      - name: Commit updated badge
+        run: |
+          # git diff --quiet guard: only commit/push when the badge actually changed.
+          git diff --quiet -- assets/freshness-badge.json || (
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add assets/freshness-badge.json
+            git commit -m "chore: refresh freshness badge [skip ci]"
+            git pull --rebase origin master
+            git push
+          )

@@ -1,8 +1,15 @@
+---
+last_reviewed: 2026-03-27
+tested_on: Docker 26.0
+---
+
 # Docker
 
 > Container platform for building, shipping, and running applications.
 
 Read more about [Docker](https://www.docker.com/).
+
+> Tested on: Docker 26.0
 
 ## Table of Contents
 

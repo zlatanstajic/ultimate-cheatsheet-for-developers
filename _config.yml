@@ -16,7 +16,21 @@ exclude:
   - .mlc-config.json
   - CONTRIBUTING.md
   - LICENSE.md
+  - assets/cli-index.json
+  - bin
+  - scripts
 
 # Include specific files
 include:
   - README.md
+
+# Apply the theme's `default` layout to all rendered pages (H-10). The content
+# pages carry `last_reviewed`/`tested_on` frontmatter but no `layout:` key;
+# without an explicit default a page can render without the jekyll-theme-minimal
+# chrome. This `defaults` block guarantees every Markdown page (root README plus
+# everything under shell/ and knowledgebase/) is wrapped in the theme layout.
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default

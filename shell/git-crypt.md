@@ -1,3 +1,7 @@
+---
+last_reviewed: 2026-03-27
+---
+
 # Git Crypt
 
 > Transparent file encryption for version control with git-crypt.

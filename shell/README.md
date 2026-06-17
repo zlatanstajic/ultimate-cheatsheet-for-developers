@@ -1,3 +1,7 @@
+---
+last_reviewed: 2026-03-27
+---
+
 # Shell Cheatsheet
 
 > Commands for Unix shell terminal.

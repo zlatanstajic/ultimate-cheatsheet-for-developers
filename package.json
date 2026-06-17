@@ -1,15 +1,32 @@
 {
-  "name": "ultimate-cheatsheet-for-developers",
+  "name": "ucheat",
   "version": "0.1.0",
-  "private": true,
   "engines": {
     "node": ">=20"
   },
+  "bin": {
+    "ucheat": "bin/ucheat.mjs"
+  },
+  "files": [
+    "bin",
+    "assets/cli-index.json",
+    "README.md"
+  ],
   "scripts": {
     "lint:md": "find . -name \"*.md\" -not -path \"./node_modules/*\" -print0 | xargs -0 remark --quiet --frail",
     "check:links": "find . -name \"*.md\" -not -path \"./node_modules/*\" -print0 | xargs -0 -n1 markdown-link-check --config .mlc-config.json",
     "spell": "find . -name \"*.md\" -not -path \"./node_modules/*\" -print0 | xargs -0 -n1 cspell",
-    "test": "npm run lint:md && npm run check:links && npm run spell",
+    "test": "npm run lint:md && npm run check:links && npm run spell && npm run check:cli-index",
+    "build:index": "node scripts/build-search-index.mjs",
+    "build:cli-index": "node scripts/build-cli-index.mjs",
+    "check:cli-index": "node scripts/build-cli-index.mjs && git diff HEAD --exit-code -- assets/cli-index.json",
+    "prepublishOnly": "npm run build:cli-index",
+    "build:print": "node scripts/build-print.mjs",
+    "build:snippets": "node scripts/build-snippets.mjs",
+    "build:export": "npm run build:print && npm run build:snippets",
+    "check:freshness": "node scripts/check-freshness.mjs",
+    "check:drift": "node scripts/check-review-drift.mjs",
+    "leaderboard": "node scripts/build-leaderboard.mjs",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -19,12 +36,25 @@
       "markdown-link-check --config .mlc-config.json"
     ]
   },
+  "dependencies": {
+    "fuse.js": "^7.1.0",
+    "marked": "^15.0.0",
+    "marked-terminal": "^7.3.0"
+  },
   "devDependencies": {
     "cspell": "^9.7.0",
     "husky": "^9.1.7",
+    "js-yaml": "^4.1.0",
     "lint-staged": "^16.3.3",
+    "lunr": "2.3.9",
     "markdown-link-check": "^3.11.6",
+    "mdast-util-to-string": "^4.0.0",
     "remark-cli": "^12.0.0",
-    "remark-preset-lint-recommended": "^7.0.0"
+    "remark-frontmatter": "^5.0.0",
+    "remark-gfm": "^4.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-preset-lint-recommended": "^7.0.0",
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.1.0"
   }
 }

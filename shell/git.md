@@ -1,8 +1,17 @@
+---
+last_reviewed: 2026-03-27
+tested_on:
+  - git 2.43
+  - git 2.44
+---
+
 # Git
 
 > Version-control system for tracking changes in source code during software development.
 
 Read more about [Git](https://git-scm.com/).
+
+> Tested on: git 2.43
 
 ## Table of Contents
 

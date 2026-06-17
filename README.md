@@ -1,10 +1,29 @@
 # Ultimate Cheatsheet for Developers
 
+![freshness](https://img.shields.io/endpoint?url=https://zlatanstajic.github.io/ultimate-cheatsheet-for-developers/assets/freshness-badge.json)
+
 > Making everyday development easier.
 
 A curated collection of tips, commands, and resources to speed up and simplify your web development workflow.
 
+## CLI
+
+Read any cheatsheet section straight from your terminal with the `ucheat` npm package:
+
+```bash
+# Render a section (fuzzy-matched, so "git stsh" works too)
+npx ucheat git stash
+
+# List the sections of a tool's cheatsheet
+npx ucheat docker
+
+# Show usage and the list of available tools
+npx ucheat --help
+```
+
 ## Table of Contents
+
+🔍 [Search](search.html) — search across all cheatsheets and jump to the matching section.
 
 ### 📚 Knowledgebase
 
@@ -33,6 +52,10 @@ A curated collection of tips, commands, and resources to speed up and simplify y
 |🐳 [Docker](shell/docker.md)|Container platform for building and running applications.|
 |💾 [Redis](shell/redis.md)|In-memory data structure store for caching and data management.|
 |🔷 [PHP](shell/php.md)|PHP command-line usage and scripting.|
+|🔑 [SSH](shell/ssh.md)|Secure remote login and command execution.|
+|🧮 [jq](shell/jq.md)|Command-line JSON processor.|
+|🪟 [tmux](shell/tmux.md)|Terminal multiplexer for sessions, windows, and panes.|
+|⚙️ [systemctl](shell/systemctl.md)|Control the systemd system and service manager.|
 
 ## Inspiration
 
@@ -52,6 +75,26 @@ npm test
 ```
 
 This runs markdownlint, markdown-link-check, and cspell against the repository Markdown files.
+
+## Exports
+
+To take the cheatsheets offline, generate export artifacts locally:
+
+```bash
+npm run build:print     # print-optimized HTML pages in dist/print/
+npm run build:snippets  # VS Code snippet bundle in dist/snippets/cheatsheets.code-snippets
+npm run build:export    # both of the above
+```
+
+Output lands in the git-ignored `dist/` folder. Open any page from `dist/print/` in a browser and use "Print to PDF" for a clean paper copy (one card per section). Import `cheatsheets.code-snippets` into VS Code (place it in your snippets folder) to get the shell commands as editor snippets.
+
+## Contributors
+
+Generated from `git shortlog` — regenerate with `npm run leaderboard`.
+
+<!-- CONTRIBUTORS:START -->
+1. **Zlatan Stajic** — 12 commits
+<!-- CONTRIBUTORS:END -->
 
 ## License
 

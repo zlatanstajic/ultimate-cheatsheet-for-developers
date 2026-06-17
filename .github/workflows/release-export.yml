@@ -1,0 +1,36 @@
+name: Release export artifacts
+
+# Manually dispatched: builds the print-HTML tree and the VS Code snippet
+# bundle, then attaches both to a GitHub Release for the given tag. Never
+# pushes to master, so it does NOT join the auto-commit-master concurrency
+# group shared by the push-to-master bot workflows.
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag to create or attach the assets to"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release-export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: lts/*
+          cache: npm
+      - run: npm ci
+      - run: node scripts/build-snippets.mjs --check
+      - run: npm run build:export
+      - run: zip -r dist/cheatsheets-print-html.zip dist/print
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.tag }}
+          files: |
+            dist/cheatsheets-print-html.zip
+            dist/snippets/cheatsheets.code-snippets

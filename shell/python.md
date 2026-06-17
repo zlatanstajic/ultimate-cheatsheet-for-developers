@@ -1,3 +1,7 @@
+---
+last_reviewed: 2026-02-24
+---
+
 # Python
 
 > Python programming language and package management.

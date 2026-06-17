@@ -1,3 +1,7 @@
+---
+last_reviewed: 2026-03-27
+---
+
 # Learning Sources
 
 > Useful learning sources for web development.

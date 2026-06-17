@@ -1,8 +1,15 @@
+---
+last_reviewed: 2026-03-27
+tested_on: npm 10.7
+---
+
 # npm
 
 > Default package manager for the JavaScript runtime environment Node.js.
 
 Read more about [npm](https://www.npmjs.com/).
+
+> Tested on: npm 10.7
 
 ## Table of Contents
 

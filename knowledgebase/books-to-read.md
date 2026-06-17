@@ -1,3 +1,7 @@
+---
+last_reviewed: 2026-03-27
+---
+
 # Books To Read
 
 > Recommended books for software developers.

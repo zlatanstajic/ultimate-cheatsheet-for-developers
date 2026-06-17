@@ -1,3 +1,7 @@
+---
+last_reviewed: 2026-03-27
+---
+
 # Redis
 
 > In-memory data structure store for caching and data management.

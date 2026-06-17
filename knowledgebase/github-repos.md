@@ -1,3 +1,7 @@
+---
+last_reviewed: 2026-06-08
+---
+
 # GitHub Repos
 
 > Curated list of useful GitHub repositories for web development.
@@ -55,11 +59,11 @@
 |---|---|
 |[Markdown Cheatsheet](https://github.com/tchapi/markdown-cheatsheet)|Markdown syntax reference.|
 |[Emoji Cheat Sheet](https://github.com/ikatyang/emoji-cheat-sheet)|Emoji codes for GitHub and Slack.|
-|[Design Resources](https://github.com/bradtraversy/design-resources-for-developers)|Design assets and tools for developers.|
+|[Design Resources for Developers](https://github.com/bradtraversy/design-resources-for-developers)|Design assets and tools for developers.|
 |[Web Development Resources](https://github.com/MarkoDenic/web-development-resources)|Curated list of development resources.|
 |[Awesome Learning Resources](https://github.com/lauragift21/awesome-learning-resources)|Learning resources for developers.|
 |[30 Seconds of Code](https://github.com/30-seconds/30-seconds-of-code)|Short code snippets for web development.|
-|[Algorithms & Data Structures](https://github.com/excelbrium/algorithms-and-data-structures)|Algorithms and data structures in multiple languages.|
+|[Algorithms and Data Structures](https://github.com/excelbrium/algorithms-and-data-structures)|Algorithms and data structures in multiple languages.|
 |[Don't Fear the RegEx](https://github.com/PHLAK/dont-fear-the-regex)|Regex reference and examples.|
 |[Naming Cheatsheet](https://github.com/kettanaito/naming-cheatsheet)|Naming conventions for variables and functions.|
 |[Awesome Design Patterns](https://github.com/DovAmir/awesome-design-patterns)|Software and architectural design patterns.|
@@ -81,10 +85,10 @@
 |[Claude Mem](https://github.com/thedotmack/claude-mem)|Memory management system for Claude.|
 |[Claude Code Organizer](https://github.com/mcpware/claude-code-organizer)|Organization and project management for Claude Code.|
 |[Claude How-To](https://github.com/luongnv89/claude-howto)|How-to guides and tutorials for Claude.|
-|[Skills](https://github.com/mattpocock/skills)|Skill definitions and extensions for Claude.|
+|[Skills (mattpocock)](https://github.com/mattpocock/skills)|Skill definitions and extensions for Claude.|
 |[Caveman](https://github.com/JuliusBrussee/caveman)|Claude Code skill that cuts 65% of tokens by talking like caveman.|
 |[Agency Agents](https://github.com/msitarzewski/agency-agents)|Complete AI agency with specialized expert agents with personality, processes, and proven deliverables.|
-|[Anthropics Skills](https://github.com/anthropics/skills)|Public repository for Agent Skills.|
+|[Skills (Anthropic)](https://github.com/anthropics/skills)|Public repository for Agent Skills.|
 |[CodeBurn](https://github.com/getagentseal/codeburn)|See where your AI coding tokens go. Interactive TUI dashboard for Claude Code, Codex, and Cursor cost observability.|
 |[RTK](https://github.com/rtk-ai/rtk)|CLI proxy that reduces LLM token consumption by 60-90% on common dev commands. Single Rust binary, zero dependencies.|
 
@@ -111,8 +115,7 @@
 
 |Name|Description|
 |---|---|
-|[Directory Lister](https://github.com/DirectoryLister/DirectoryLister)|Simple PHP directory listing.|
-|[CSS Hexagons](https://github.com/shariarbd/CSS3-Hexagon-Buttons)|CSS3 hexagon buttons.|
+|[CSS3 Hexagon Buttons](https://github.com/shariarbd/CSS3-Hexagon-Buttons)|CSS3 hexagon buttons.|
 |[CSS Protips](https://github.com/AllThingsSmitty/css-protips)|Tips for writing better CSS.|
 
 [⬆ back to top](#table-of-contents)
@@ -158,6 +161,7 @@
 
 |Name|Description|
 |---|---|
+|[Directory Lister](https://github.com/DirectoryLister/DirectoryLister)|Simple PHP directory listing.|
 |[Design Patterns PHP](https://github.com/domnikl/DesignPatternsPHP)|Design patterns in PHP.|
 |[PHP Developer Roadmap](https://github.com/thecodeholic/php-developer-roadmap)|Roadmap for PHP developers.|
 
@@ -172,6 +176,7 @@
 |[OpenAI Laravel](https://github.com/openai-php/laravel)|Laravel integration for the OpenAI API.|
 |[Laravel Cascade Soft Deletes](https://github.com/michaeldyrynda/laravel-cascade-soft-deletes)|Cascade soft deletes for Laravel models.|
 |[Larastan](https://github.com/nunomaduro/larastan)|PHPStan wrapper for Laravel.|
+|[Laravel API to Postman](https://github.com/andreaselia/laravel-api-to-postman)|Generate a Postman collection automatically from your Laravel API.|
 
 [⬆ back to top](#table-of-contents)
 
@@ -180,7 +185,7 @@
 |Name|Description|
 |---|---|
 |[PhpSpreadsheet](https://github.com/PHPOffice/PhpSpreadsheet)|Read and write spreadsheet files.|
-|[PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)|Detect coding standard violations.|
+|[PHP CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)|Detect coding standard violations.|
 |[PHPStan](https://github.com/phpstan/phpstan)|Static analysis tool for PHP.|
 |[Log4PHP](https://github.com/apache/logging-log4php)|Logging framework for PHP.|
 |[PHPMailer](https://github.com/PHPMailer/PHPMailer)|Popular email sending library.|
