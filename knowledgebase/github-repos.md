@@ -91,6 +91,7 @@ last_reviewed: 2026-06-08
 |[Skills (Anthropic)](https://github.com/anthropics/skills)|Public repository for Agent Skills.|
 |[CodeBurn](https://github.com/getagentseal/codeburn)|See where your AI coding tokens go. Interactive TUI dashboard for Claude Code, Codex, and Cursor cost observability.|
 |[RTK](https://github.com/rtk-ai/rtk)|CLI proxy that reduces LLM token consumption by 60-90% on common dev commands. Single Rust binary, zero dependencies.|
+|[Ponytail](https://github.com/DietrichGebert/ponytail)|Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.|
 
 [⬆ back to top](#table-of-contents)
 
@@ -106,6 +107,8 @@ last_reviewed: 2026-06-08
 |[MkDocs](https://github.com/mkdocs/mkdocs)|Project documentation with Markdown.|
 |[RenderGit](https://github.com/karpathy/rendergit)|Render any git repo into a single static HTML page for humans or LLMs.|
 |[Browsershot](https://github.com/spatie/browsershot)|Convert HTML to an image, PDF or string.|
+|[PDF to Markdown](https://github.com/iamarunbrahma/pdf-to-markdown)|Conversion of PDF documents to structured Markdown.|
+|[Odysseus](https://github.com/pewdiepie-archdaemon/odysseus)|Self-hosted AI workspace.|
 
 [⬆ back to top](#table-of-contents)
 

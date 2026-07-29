@@ -15,7 +15,7 @@ import { readFileSync, writeFileSync, readdirSync, statSync, mkdirSync } from "n
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import yaml from "js-yaml";
+import { load } from "js-yaml";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
@@ -54,7 +54,7 @@ function listMarkdown(dir) {
 function readFrontmatter(source) {
   const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
   if (!match) return null;
-  const data = yaml.load(match[1]);
+  const data = load(match[1]);
   return data && typeof data === "object" ? data : null;
 }
 

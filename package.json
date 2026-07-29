@@ -44,7 +44,7 @@
   "devDependencies": {
     "cspell": "^9.7.0",
     "husky": "^9.1.7",
-    "js-yaml": "^4.1.0",
+    "js-yaml": "^5.2.2",
     "lint-staged": "^16.3.3",
     "lunr": "2.3.9",
     "markdown-link-check": "^3.11.6",

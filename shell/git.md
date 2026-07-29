@@ -113,6 +113,9 @@ git reset --hard [commit-hash]
 git reset --hard HEAD~[n]
 git push -f
 
+# Push commits bypassing pre-push hooks (use with caution — skips CI checks and linters)
+git push --no-verify
+
 # Inspect a specific commit (results in detached HEAD — create a branch to keep changes)
 git checkout [commit-hash]
 
