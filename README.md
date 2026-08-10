@@ -93,7 +93,7 @@ Output lands in the git-ignored `dist/` folder. Open any page from `dist/print/`
 Generated from `git shortlog` — regenerate with `npm run leaderboard`.
 
 <!-- CONTRIBUTORS:START -->
-1. **Zlatan Stajic** — 12 commits
+1. **Zlatan Stajic** — 13 commits
 <!-- CONTRIBUTORS:END -->
 
 ## License
