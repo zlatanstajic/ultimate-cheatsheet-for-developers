@@ -1,1 +1,5 @@
 npx lint-staged
+
+# Keep the search index in sync with content (was a CI bot commit before).
+npm run build:index --silent
+git diff --quiet -- assets/search-index.json || git add assets/search-index.json

@@ -92,6 +92,8 @@ last_reviewed: 2026-06-08
 |[CodeBurn](https://github.com/getagentseal/codeburn)|See where your AI coding tokens go. Interactive TUI dashboard for Claude Code, Codex, and Cursor cost observability.|
 |[RTK](https://github.com/rtk-ai/rtk)|CLI proxy that reduces LLM token consumption by 60-90% on common dev commands. Single Rust binary, zero dependencies.|
 |[Ponytail](https://github.com/DietrichGebert/ponytail)|Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.|
+|[SkillSpector](https://github.com/NVIDIA/SkillSpector)|Security scanner for AI agent skills. Detects vulnerabilities, malicious patterns, prompt injection, data exfiltration, and supply-chain risks in Claude Code, Codex, and MCP skills before you install them.|
+|[Graphify](https://github.com/Graphify-Labs/graphify)|Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store.|
 
 [⬆ back to top](#table-of-contents)
 
@@ -180,6 +182,7 @@ last_reviewed: 2026-06-08
 |[Laravel Cascade Soft Deletes](https://github.com/michaeldyrynda/laravel-cascade-soft-deletes)|Cascade soft deletes for Laravel models.|
 |[Larastan](https://github.com/nunomaduro/larastan)|PHPStan wrapper for Laravel.|
 |[Laravel API to Postman](https://github.com/andreaselia/laravel-api-to-postman)|Generate a Postman collection automatically from your Laravel API.|
+|[Laravel Truss](https://github.com/albertoarena/laravel-truss)|Live database structure viewer that renders your schema as a scrollable, zoomable ER diagram. Structure only, never data.|
 
 [⬆ back to top](#table-of-contents)
 

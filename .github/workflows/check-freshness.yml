@@ -20,7 +20,7 @@ on:
 permissions:
   contents: write
 
-# Shared with build-search-index.yml and build-leaderboard.yml: all three bots
+# Shared with build-leaderboard.yml: both bots
 # push to master, so they share one concurrency group to serialize their
 # rebase/push (cancel-in-progress: false → queue rather than cancel) and avoid
 # racing on the pull --rebase / push (H-15).

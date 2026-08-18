@@ -100,15 +100,14 @@ Notes:
 
 ## Auto-commit workflows
 
-Three GitHub Actions push generated artifacts to master as `github-actions[bot]`:
+Two GitHub Actions push generated artifacts to master as `github-actions[bot]` (`assets/search-index.json` is built by the pre-commit hook instead):
 
 | Workflow | Artifact | Trigger |
 |---|---|---|
-| `build-search-index.yml` | `assets/search-index.json` | push to content/README/script |
 | `check-freshness.yml` | `assets/freshness-badge.json` | push to content + weekly Mon 06:00 UTC |
 | `build-leaderboard.yml` | `README.md` leaderboard block | weekly Mon 06:30 UTC + dispatch |
 
-All three:
+Both:
 
 - commit with `[skip ci]` so their own push does not retrigger CI in a loop;
 - use a `git diff --quiet` guard so they only commit when the artifact actually changed;
