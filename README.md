@@ -311,7 +311,7 @@ The script requires Pillow and a bold DejaVu or Liberation TrueType font. It con
 Generated from `git shortlog` — regenerate with `npm run leaderboard`.
 
 <!-- CONTRIBUTORS:START -->
-1. **Zlatan Stajic** — 13 commits
+1. **Zlatan Stajic** — 14 commits
 <!-- CONTRIBUTORS:END -->
 
 [⬆ back to top](#table-of-contents)
