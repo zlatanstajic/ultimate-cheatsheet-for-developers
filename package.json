@@ -62,12 +62,12 @@
     "marked-terminal": "^7.3.0"
   },
   "devDependencies": {
-    "cspell": "^9.7.0",
+    "cspell": "^10.3.0",
     "husky": "^9.1.7",
-    "js-yaml": "^5.2.2",
-    "lint-staged": "^16.3.3",
+    "js-yaml": "^5.4.2",
+    "lint-staged": "^17.5.1",
     "lunr": "2.3.9",
-    "markdown-link-check": "^3.11.6",
+    "markdown-link-check": "^3.15.0",
     "mdast-util-to-string": "^4.0.0",
     "remark-cli": "^12.0.0",
     "remark-frontmatter": "^5.0.0",
