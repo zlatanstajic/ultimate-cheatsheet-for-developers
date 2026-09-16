@@ -20,10 +20,10 @@ on:
 permissions:
   contents: write
 
-# Shared with build-leaderboard.yml: both bots
-# push to master, so they share one concurrency group to serialize their
-# rebase/push (cancel-in-progress: false → queue rather than cancel) and avoid
-# racing on the pull --rebase / push (H-15).
+# This bot pushes to master, so it holds a named concurrency group that
+# serializes its rebase/push (cancel-in-progress: false → queue rather than
+# cancel) and avoids racing on the pull --rebase / push (H-15). Any further
+# workflow that pushes to master must join this same group.
 concurrency:
   group: auto-commit-master
   cancel-in-progress: false

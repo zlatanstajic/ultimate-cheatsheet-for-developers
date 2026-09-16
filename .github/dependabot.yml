@@ -1,0 +1,36 @@
+version: 2
+
+# The npm tooling here is devDependencies plus three small CLI runtime deps, so
+# updates are grouped into one PR per ecosystem per week rather than a stream of
+# individual bumps. A dependency bump does not touch assets/cli-index.json, so
+# these PRs pass the check:cli-index gate unchanged.
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: tuesday
+      time: "06:00"
+      timezone: Etc/UTC
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: chore
+    groups:
+      dev-tooling:
+        dependency-type: development
+      cli-runtime:
+        dependency-type: production
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: tuesday
+      time: "06:00"
+      timezone: Etc/UTC
+    commit-message:
+      prefix: chore
+    groups:
+      actions:
+        patterns:
+          - "*"

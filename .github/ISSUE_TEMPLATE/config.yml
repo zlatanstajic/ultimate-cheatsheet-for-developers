@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security issue
+    url: https://github.com/zlatanstajic/ultimate-cheatsheet-for-developers/blob/master/SECURITY.md
+    about: Exposed credentials, an unflagged destructive command, or a hijacked link — report privately, not here.

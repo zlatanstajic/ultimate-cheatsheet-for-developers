@@ -1,6 +1,6 @@
 # Ultimate Cheatsheet for Developers Project Rules
 
-Guidance for any coding agent working in this repository, and the canonical version of these rules. [`CLAUDE.md`](CLAUDE.md) mirrors them in condensed form for Claude Code; change this file first, then mirror the change there.
+Guidance for any coding agent working in this repository, and the single source of truth for these rules. [`CLAUDE.md`](CLAUDE.md) holds no rules of its own — it imports this file so Claude Code loads it automatically. Make every change here.
 
 ## Overview
 
@@ -14,16 +14,16 @@ Node 20 or newer; no Docker, no Sail, nothing to boot.
 
 ```bash
 npm install             # installs tooling and the Husky hook via `prepare`
-npm test                # gate: lint:md → check:links → spell → check:cli-index
+npm test                # gate: lint:md → check:links → spell → check:snippets → check:cli-index
 npm run lint:md         # remark-cli, --frail (warnings are errors)
 npm run check:links     # markdown-link-check over every .md
 npm run spell           # cspell over every .md
+npm run check:snippets  # snippet-builder self-test; part of the gate
 npm run build:cli-index # regenerate assets/cli-index.json (required after content edits)
 npm run build:index     # regenerate assets/search-index.json (the hook also does this)
 npm run build:export    # dist/print/** and dist/snippets/cheatsheets.code-snippets
 npm run check:freshness # report-only; writes assets/freshness-badge.json
 npm run check:drift     # report-only; pages edited after their attested review date
-npm run leaderboard     # rewrite the README contributor block from `git shortlog`
 ```
 
 Every validation script globs all `*.md`, so there is no single-file runner. Check one file by calling the tool directly:
@@ -42,11 +42,9 @@ npx markdown-link-check --config .mlc-config.json shell/git.md
 - `scripts/lib/markdown-helpers.mjs` sorts directory entries specifically so the emitted JSON is byte-stable across filesystems. An unsorted `readdirSync` would make the gate fail at random.
 - `collectFile()` throws when two files map to one tool name (`shell/git.md` → `git`, `shell/README.md` → `shell`, root `README.md` → `readme`). Adding `knowledgebase/git.md` would collide with `shell/git.md`. That error is a feature, not a bug to catch and swallow.
 
-## `README.md` is a build input and a build output at once
+## `README.md` is a build input to both index builders
 
-- The contributor block between `<!-- CONTRIBUTORS:START -->` and `<!-- CONTRIBUTORS:END -->` is rewritten by `scripts/build-leaderboard.mjs`, which **exits 1 if either marker is missing**. Never drop the markers while restructuring the README, and never hand-edit the list — rerun `npm run leaderboard`.
 - The same file is walked by both index builders, so a README edit also requires `npm run build:cli-index` (see above).
-- Generated contributor names land in `README.md`, which cspell scans. A new contributor with an unusual name fails `npm test` until the name is added to `words` in `.cspell.json`. That is the intended fix.
 - The README table of contents is link-checked. Adding or renaming a page under `shell/` or `knowledgebase/` means updating the root README table **and** the matching folder index (`shell/README.md`, `knowledgebase/README.md`).
 
 ## remark is the linter; markdownlint is not installed
@@ -69,7 +67,7 @@ npx markdown-link-check --config .mlc-config.json shell/git.md
 
 ## The snippet builder self-test asserts against real cheatsheet content
 
-- `node scripts/build-snippets.mjs --check` runs fixture assertions against actual lines in `shell/git.md`, `shell/docker.md`, `shell/jq.md`, and `shell/linux.md`. `release-export.yml` runs it before building a release.
+- `node scripts/build-snippets.mjs --check` runs fixture assertions against actual lines in `shell/git.md`, `shell/docker.md`, `shell/jq.md`, and `shell/linux.md`. It is wired into `npm test` as `check:snippets`, so CI catches a broken fixture on the commit that breaks it; `release-export.yml` runs it again before building a release.
 - **Editing those pages can break the self-test.** When it fails because a fixture references a line you changed, update the assertion in `scripts/build-snippets.mjs` to match the new content. Do not delete the assertion.
 - The builder pairs a leading `# comment` with the command lines under it inside `bash`/`sh` fences, turns `[placeholder]` into `${N:placeholder}` tabstops, and deliberately leaves purely numeric tokens (`sys.argv[1]`) literal. Writing a cheatsheet command with unbracketed placeholders means it silently produces a snippet with no tabstops.
 
@@ -79,12 +77,14 @@ npx markdown-link-check --config .mlc-config.json shell/git.md
 - So a commit made with `--no-verify`, or a change landed without running the hook, ships a stale search index. Run `npm run build:index` by hand in that case.
 - Section anchors in the index come from `slugify()`/`dedupeSlug()` in `scripts/lib/markdown-helpers.mjs`, which replicate kramdown's GitHub-style slugging (including `-1`, `-2` suffixes for repeated headings) so the generated links match what Jekyll actually renders. Swapping in a generic slug library breaks every deep link.
 
-## Two workflows commit to master; they are wired to not fight
+## One workflow commits to master; a second must not fight it
 
-- `check-freshness.yml` (badge JSON) and `build-leaderboard.yml` (README block) both push to `master` as `github-actions[bot]`. Each commits with `[skip ci]` so its own push does not retrigger CI in a loop, guards with `git diff --quiet` so it only commits real changes, and joins the shared `auto-commit-master` concurrency group with `cancel-in-progress: false` so the two `git pull --rebase` / `git push` sequences queue instead of racing.
-- A third workflow that pushes to `master` must join that same group and carry `[skip ci]`. `release-export.yml` does not push to master, which is why it stays out of the group.
-- If branch protection is ever enabled on `master`, it must allow `github-actions[bot]` to push, or both workflows fail on their push step.
-- `build-leaderboard.mjs` filters authors whose name ends in `[bot]`, which is what keeps these workflows off their own leaderboard and absorbs the ±1 drift their commits introduce. `git shortlog -sn` is called without `-e`, so no email addresses reach the README and the generated block cannot break `check:links`.
+- `ci.yml` declares `permissions: contents: read` and cancels superseded **pull request** runs through its own `ci-*` concurrency group. Cancellation is safe there only because the workflow writes nothing; master pushes are deliberately not cancelled, so every landed commit keeps its own gate result.
+- `release-export.yml` pins `softprops/action-gh-release` to a commit SHA with a trailing `# v2` comment, because it is a third-party action inside a `contents: write` job. Keep the pin and the comment together — `.github/dependabot.yml` updates both.
+
+- `check-freshness.yml` (badge JSON) pushes to `master` as `github-actions[bot]`. It commits with `[skip ci]` so its own push does not retrigger CI in a loop, guards with `git diff --quiet` so it only commits real changes, and holds the `auto-commit-master` concurrency group with `cancel-in-progress: false` so concurrent runs queue on the `git pull --rebase` / `git push` instead of racing.
+- Another workflow that pushes to `master` must join that same group and carry `[skip ci]`. `release-export.yml` does not push to master, which is why it stays out of the group.
+- If branch protection is ever enabled on `master`, it must allow `github-actions[bot]` to push, or the workflow fails on its push step.
 
 ## Conventions
 
@@ -105,7 +105,6 @@ npx markdown-link-check --config .mlc-config.json shell/git.md
 | `assets/cli-index.json` | `npm run build:cli-index` | Yes | `npm test` (`check:cli-index`) |
 | `assets/search-index.json` | `npm run build:index` | Yes | `.husky/pre-commit` |
 | `assets/freshness-badge.json` | `npm run check:freshness` | Yes | `check-freshness.yml` |
-| `README.md` contributor block | `npm run leaderboard` | Yes | `build-leaderboard.yml` |
 | `assets/img/og-image.png` | `python3 scripts/gen-og-image.py` | Yes | Manual |
 | `dist/**` | `npm run build:export` | No (git-ignored) | `release-export.yml` |
 
