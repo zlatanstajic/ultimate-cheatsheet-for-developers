@@ -19,8 +19,8 @@ jobs:
   release-export:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: lts/*
           cache: npm
@@ -28,7 +28,10 @@ jobs:
       - run: node scripts/build-snippets.mjs --check
       - run: npm run build:export
       - run: zip -r dist/cheatsheets-print-html.zip dist/print
-      - uses: softprops/action-gh-release@v2
+      # SHA-pinned: third-party action in a contents: write job, so a moved tag
+      # must not silently change what runs. Dependabot bumps the pin and the
+      # trailing version comment together.
+      - uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
         with:
           tag_name: ${{ inputs.tag }}
           files: |

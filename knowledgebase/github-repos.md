@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-06-08
+last_reviewed: 2026-09-16
 ---
 
 # GitHub Repos
@@ -94,6 +94,8 @@ last_reviewed: 2026-06-08
 |[Ponytail](https://github.com/DietrichGebert/ponytail)|Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.|
 |[SkillSpector](https://github.com/NVIDIA/SkillSpector)|Security scanner for AI agent skills. Detects vulnerabilities, malicious patterns, prompt injection, data exfiltration, and supply-chain risks in Claude Code, Codex, and MCP skills before you install them.|
 |[Graphify](https://github.com/Graphify-Labs/graphify)|Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store.|
+|[Dyslexic Claude](https://github.com/schananas/dyslexic-claude)|Claude Code output style for people who find reading expensive.|
+|[Hallmark](https://github.com/Nutlope/hallmark)|Anti-slop design skill for Claude Code, Cursor, and Codex.|
 
 [⬆ back to top](#table-of-contents)
 
@@ -111,6 +113,7 @@ last_reviewed: 2026-06-08
 |[Browsershot](https://github.com/spatie/browsershot)|Convert HTML to an image, PDF or string.|
 |[PDF to Markdown](https://github.com/iamarunbrahma/pdf-to-markdown)|Conversion of PDF documents to structured Markdown.|
 |[Odysseus](https://github.com/pewdiepie-archdaemon/odysseus)|Self-hosted AI workspace.|
+|[Codex](https://github.com/openai/codex)|Lightweight coding agent that runs in your terminal.|
 
 [⬆ back to top](#table-of-contents)
 

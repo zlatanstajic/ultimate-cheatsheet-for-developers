@@ -83,6 +83,8 @@
     "docroot",
     "phpinfo",
     "heapsnapshot",
+    "hostnames",
+    "unpublishing",
     "SIGUSR",
     "argjson",
     "journalctl",

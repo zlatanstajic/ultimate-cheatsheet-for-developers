@@ -9,7 +9,7 @@
 
 A curated collection of developer cheatsheets and resource lists written in plain Markdown. The same content is published as a Jekyll site on GitHub Pages, searched in the browser through a prebuilt index, read from the terminal through the `ucheat` CLI, and exported offline as print-ready HTML or a VS Code snippet bundle.
 
-<img src="assets/img/og-image.png" alt="Ultimate Cheatsheet for Developers social preview" width="100%">
+<img src="assets/img/og-image.png" alt="Ultimate Cheatsheet for Developers social preview" width="1200" height="630" style="max-width:100%;height:auto;">
 
 ## Table of Contents
 
@@ -31,8 +31,8 @@ A curated collection of developer cheatsheets and resource lists written in plai
 - [Continuous Integration](#continuous-integration)
   - [Pre-commit Hook](#pre-commit-hook)
 - [Open Graph Image](#open-graph-image)
-- [Contributors](#contributors)
 - [Contributing](#contributing)
+- [Security](#security)
 - [License](#license)
 
 ---
@@ -48,7 +48,6 @@ A curated collection of developer cheatsheets and resource lists written in plai
 - **Print export:** A generated HTML tree turns each section into its own card for clean per-section page breaks when printing.
 - **Snippet export:** Commented shell commands are extracted into a VS Code snippet bundle with placeholder tabstops.
 - **Validation pipeline:** Lint, link, and spell checks run on every push, every pull request, and every local commit.
-- **Generated contributor list:** The contributor table is rebuilt from `git shortlog` with no GitHub token or network access.
 
 [⬆ back to top](#table-of-contents)
 
@@ -169,7 +168,7 @@ node bin/ucheat.mjs docker
 node bin/ucheat.mjs git stash
 ```
 
-The same entry point is packaged for npm as `ucheat`, so a published release is callable as `npx ucheat git stash`. It exits `0` when a section was rendered, `1` when nothing matched, and `2` when the query was ambiguous, in which case it prints the closest candidates instead of guessing.
+The same entry point is packaged for npm as `ucheat`, but the package is **not published yet** — run it as `node bin/ucheat.mjs` from a clone. Once a first release lands it will also be callable as `npx ucheat git stash`. It exits `0` when a section was rendered, `1` when nothing matched, and `2` when the query was ambiguous, in which case it prints the closest candidates instead of guessing.
 
 The CLI reads the prebuilt index at `assets/cli-index.json` and never parses Markdown at runtime. Editing anything under `shell/`, `knowledgebase/`, or this README changes that index:
 
@@ -191,7 +190,7 @@ npm run build:export    # both of the above
 
 Output lands in the git-ignored `dist/` folder. Open any page from `dist/print/` in a browser and print to PDF for a paper copy, one card per section. Place `cheatsheets.code-snippets` in your VS Code snippets folder to get the shell commands as editor snippets.
 
-The snippet builder has a self-test that asserts against real cheatsheet content and writes nothing:
+The snippet builder has a self-test that asserts against real cheatsheet content and writes nothing. It runs as part of `npm test`, and again before a release build:
 
 ```bash
 node scripts/build-snippets.mjs --check
@@ -238,14 +237,7 @@ Run the complete validation suite:
 npm test
 ```
 
-That runs four gates in order:
-
-| Script | Tool | Config | Purpose |
-|---|---|---|---|
-| `lint:md` | remark-cli | [`.remarkrc.js`](.remarkrc.js) | Markdown lint; `--frail` treats warnings as errors |
-| `check:links` | markdown-link-check | [`.mlc-config.json`](.mlc-config.json) | External and relative link validity |
-| `spell` | cspell | [`.cspell.json`](.cspell.json) | Spell check against the project word list |
-| `check:cli-index` | Node | — | Rebuilds `assets/cli-index.json` and fails on uncommitted drift |
+That runs five gates in order: `lint:md`, `check:links`, `spell`, `check:snippets`, `check:cli-index`.
 
 Each script globs every `*.md` outside `node_modules`, so there is no single-file runner. To check one file, call the tool directly:
 
@@ -263,16 +255,15 @@ New command flags, tool names, and proper nouns will fail the spell check. Add t
 
 ## Continuous Integration
 
-Four GitHub Actions workflows run against this repository:
+Three GitHub Actions workflows run against this repository:
 
 | Workflow | Trigger | What it does |
 |---|---|---|
 | [`ci.yml`](.github/workflows/ci.yml) | Push and pull requests to `master` | Runs `npm ci` and `npm test` on the current Node LTS |
 | [`check-freshness.yml`](.github/workflows/check-freshness.yml) | Content pushes, Mondays 06:00 UTC, manual | Rebuilds `assets/freshness-badge.json` and commits any change |
-| [`build-leaderboard.yml`](.github/workflows/build-leaderboard.yml) | Mondays 06:30 UTC, manual | Rebuilds the [Contributors](#contributors) list and commits any change |
 | [`release-export.yml`](.github/workflows/release-export.yml) | Manual, takes a `tag` input | Builds both exports and attaches them to a GitHub Release |
 
-The two committing workflows push to `master` as `github-actions[bot]` with `[skip ci]`, only when the generated file actually changed, and share one serialized concurrency group so they never race on the push.
+`check-freshness.yml` pushes to `master` as `github-actions[bot]` with `[skip ci]`, only when the generated file actually changed, and holds a serialized concurrency group that any further master-pushing workflow must join.
 
 ### Pre-commit Hook
 
@@ -306,21 +297,17 @@ The script requires Pillow and a bold DejaVu or Liberation TrueType font. It con
 
 ---
 
-## Contributors
+## Contributing
 
-Generated from `git shortlog` — regenerate with `npm run leaderboard`.
-
-<!-- CONTRIBUTORS:START -->
-1. **Zlatan Stajic** — 13 commits
-<!-- CONTRIBUTORS:END -->
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to propose a change, add a page, and keep the frontmatter and generated artifacts in sync.
 
 [⬆ back to top](#table-of-contents)
 
 ---
 
-## Contributing
+## Security
 
-Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to propose a change, add a page, and keep the frontmatter and generated artifacts in sync.
+Found a credential in the repository, an undocumented destructive command, or a hijacked link? Report it privately by email rather than in a public issue — see [SECURITY.md](SECURITY.md) for what qualifies and how to send it.
 
 [⬆ back to top](#table-of-contents)
 

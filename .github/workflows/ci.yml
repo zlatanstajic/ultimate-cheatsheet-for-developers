@@ -6,12 +6,25 @@ on:
   pull_request:
     branches: [master]
 
+# Read-only: this workflow only runs the quality gate. It never pushes, so it
+# stays out of the auto-commit-master concurrency group used by the bot
+# workflows that do.
+permissions:
+  contents: read
+
+# Supersede a still-running check when a PR is pushed to again. Cancellation is
+# safe here precisely because nothing is written; master pushes are not
+# cancelled so every landed commit keeps its own gate result.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: lts/*
           cache: npm
