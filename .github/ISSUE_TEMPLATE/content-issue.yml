@@ -1,0 +1,39 @@
+name: Content correction or addition
+description: A command is wrong or outdated, a link is dead, or a page is missing something.
+labels: ["content"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For a command that is destructive or exposes a secret without the page
+        warning about it, stop here and follow [SECURITY.md](../blob/master/SECURITY.md) instead.
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: Which file is affected?
+      placeholder: shell/docker.md
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong
+      description: Quote the command or line as it appears today.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: What it should say
+      description: The corrected command, or the entry you want added.
+    validations:
+      required: true
+  - type: input
+    id: verified-on
+    attributes:
+      label: Verified against
+      description: Tool and version you confirmed this with, so the page's `tested_on` stays honest.
+      placeholder: docker 27.3
+    validations:
+      required: false

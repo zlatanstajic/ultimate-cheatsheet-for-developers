@@ -1,4 +1,5 @@
 {
-  "retryOn429": true,
-  "ignorePatterns": ["#L\\d+$"]
+  "ignorePatterns": [
+    { "pattern": "^(https?|mailto):" }
+  ]
 }

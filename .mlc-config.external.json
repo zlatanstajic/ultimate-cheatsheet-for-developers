@@ -1,0 +1,10 @@
+{
+  "retryOn429": true,
+  "retryCount": 3,
+  "fallbackRetryDelay": "30s",
+  "timeout": "20s",
+  "aliveStatusCodes": [200, 206, 403, 999],
+  "ignorePatterns": [
+    { "pattern": "#L\\d+$" }
+  ]
+}

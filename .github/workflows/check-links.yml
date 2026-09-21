@@ -1,0 +1,46 @@
+name: Check external links
+
+# External link rot is time-based, not commit-based: a URL that resolved when it
+# was merged can die months later with no change to this repository. Putting
+# that check in the blocking gate would make every push and pull request depend
+# on dozens of third-party hosts being up, so it runs on a schedule instead.
+#
+# The deterministic half stays blocking: `npm run check:links` validates
+# relative links only (.mlc-config.json ignores http/https/mailto), which is
+# what a contributor actually breaks by renaming a page or missing a table-of-
+# contents entry. This workflow runs the same files through
+# .mlc-config.external.json, which checks everything.
+
+on:
+  schedule:
+    # Weekly, Monday 07:00 UTC — an hour after check-freshness.yml, so the two
+    # scheduled maintenance runs do not report at the same moment.
+    - cron: "0 7 * * 1"
+  workflow_dispatch:
+
+# Read-only: this workflow reports rot, it never rewrites content. It does not
+# push to master, so it stays out of the auto-commit-master concurrency group.
+permissions:
+  contents: read
+
+# Superseding a still-running scan is safe: nothing is written, and a manual
+# dispatch is usually a re-check of the scheduled run.
+concurrency:
+  group: check-links-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-external-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+          cache: npm
+      - run: npm ci
+      # Deliberately allowed to fail: a red scheduled run is how dead links
+      # become visible. It gates nothing — no commit, push, release, or
+      # deployment depends on this workflow — so a third-party outage costs a
+      # notification, not a blocked contributor.
+      - run: npm run check:links:external

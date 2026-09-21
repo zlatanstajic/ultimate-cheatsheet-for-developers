@@ -24,10 +24,9 @@ last_reviewed: 2026-03-27
 |---|---|
 |[Text Compare!](https://text-compare.com/)|Compare two text files online.|
 |[Email Breaches](https://haveibeenpwned.com/)|Check if your email has been part of a data breach.|
-|[Password Generator](https://passwordsgenerator.net/)|Generate strong random passwords.|
+|[Password Generator](https://bitwarden.com/password-generator/)|Generate strong random passwords.|
 |[Flowchart Fun](https://flowchart.fun/)|Create flowcharts quickly and easily.|
 |[Installlion](https://installlion.com/)|Linux package installation guides.|
-|[Online Text Edit Tools](https://textedit.tools/)|Collection of online text editing tools.|
 |[JSHint - Static Code Analysis](https://jshint.com/)|JavaScript code quality tool.|
 |[Readme Creator](https://readme.so/)|Easily create README files for your projects.|
 |[Moodly](https://moodly.site/)|Generate color palettes based on mood.|

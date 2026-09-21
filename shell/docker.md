@@ -228,7 +228,7 @@ docker compose ps
   # Log out and back in for the change to take effect
   ```
 
-* **Never pass secrets via `--build-arg`**: build args are stored in image layer history and visible via `docker history`. Use [BuildKit secrets](https://docs.docker.com/build/secrets/) instead.
+* **Never pass secrets via `--build-arg`**: build args are stored in image layer history and visible via `docker history`. Use [BuildKit secrets](https://docs.docker.com/build/building/secrets/) instead.
 * **`/bin/bash` vs `/bin/sh`**: slim and Alpine-based images often only include `/bin/sh`. Try `/bin/sh` if `/bin/bash` fails in `exec`.
 * **`docker compose` (v2)** is the current standard. If your system still has `docker-compose` (v1), upgrade to Docker Desktop ≥ 4.x or install the Compose plugin.
 

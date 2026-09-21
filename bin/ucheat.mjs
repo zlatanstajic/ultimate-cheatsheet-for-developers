@@ -25,13 +25,22 @@ const tools = [...new Set(docs.map((d) => d.tool).filter(Boolean))].sort();
 const AMBIGUITY_GAP = 0.1;
 const MAX_CANDIDATES = 5;
 
+// Help text and hints echo the command the user actually ran: `ucheat` when the
+// package is installed and its bin shim is on PATH, `node bin/ucheat.mjs` when
+// run straight from a clone. Hardcoding `npx ucheat` advertised a command that
+// does not resolve, because the package is not published to npm yet; deriving it
+// keeps every hint true now and after a first release, with no edit needed.
+const INVOCATION = /[\\/]ucheat\.mjs$/.test(process.argv[1] ?? "")
+  ? "node bin/ucheat.mjs"
+  : "ucheat";
+
 function printUsage() {
   console.log(`ucheat — Ultimate Cheatsheet for Developers, in your terminal
 
 Usage:
-  npx ucheat <tool>            list the sections of a tool's cheatsheet
-  npx ucheat <tool> <section>  render a section (fuzzy-matched, e.g. "git stsh")
-  npx ucheat --help            show this help
+  ${INVOCATION} <tool>            list the sections of a tool's cheatsheet
+  ${INVOCATION} <tool> <section>  render a section (fuzzy-matched, e.g. "git stsh")
+  ${INVOCATION} --help            show this help
 
 Available tools:
   ${tools.join(", ")}`);
@@ -40,7 +49,7 @@ Available tools:
 function printCandidates(query, items) {
   console.log(`Ambiguous query "${query}" — closest matches:\n`);
   for (const item of items.slice(0, MAX_CANDIDATES)) {
-    console.log(`  npx ucheat ${item.tool || item.file} ${item.section}`);
+    console.log(`  ${INVOCATION} ${item.tool || item.file} ${item.section}`);
   }
   if (items.length > MAX_CANDIDATES) {
     console.log(`  …and ${items.length - MAX_CANDIDATES} more`);
@@ -76,7 +85,7 @@ if (knownTool && args.length === 1) {
   for (const d of sections) {
     console.log(`  ${d.section}`);
   }
-  console.log(`\nRender one with: npx ucheat ${tool} <section>`);
+  console.log(`\nRender one with: ${INVOCATION} ${tool} <section>`);
   process.exit(0);
 }
 
@@ -120,8 +129,8 @@ if (results.length === 0) {
   console.error(`No cheatsheet section matches "${args.join(" ")}".`);
   console.error(
     knownTool
-      ? `Run "npx ucheat ${tool}" to list the sections of ${tool}.`
-      : `Run "npx ucheat --help" to list the available tools.`,
+      ? `Run "${INVOCATION} ${tool}" to list the sections of ${tool}.`
+      : `Run "${INVOCATION} --help" to list the available tools.`,
   );
   process.exit(1);
 }

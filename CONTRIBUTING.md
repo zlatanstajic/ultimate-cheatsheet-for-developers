@@ -1,33 +1,38 @@
-# Contributing to Ultimate Cheatsheet for Developers
+# Contributing
 
-Thanks for considering a contribution! This file explains the recommended way to propose changes so maintainers can review and merge them quickly.
+Contributions are welcome. To propose a change:
 
-## Quick start
+1. **Open an issue, then branch.** Every change starts from a GitHub issue — open one first, whatever the size. Fork the repository, then create a branch off `master` under the `issues/` prefix: it is the only accepted prefix, and an `issues/` branch is the only thing you may push. Branch names are **kebab-case only** — lowercase ASCII letters, digits, and single hyphens as separators, matching `^issues/[a-z0-9]+(-[a-z0-9]+)*$`. No underscores, dots, spaces, slashes beyond the prefix, or capitals. Lead with the issue number so the branch is traceable (e.g. `issues/42-mysql-dump-flags`).
+2. **Set up the tooling.** Follow the local installation instructions in [README.md](README.md). `npm install` also installs the Husky pre-commit hook. Nothing needs to be configured and there is no `.env` file — reading and editing the cheatsheets needs no build step at all.
+3. **Work within the existing structure.** Command cheatsheets belong in [`shell/`](shell/), curated resource lists in [`knowledgebase/`](knowledgebase/). Use a kebab-case filename, open the page with [freshness metadata](#freshness-metadata), then an `# H1`, a one-line blockquote summary, and `## ` sections of fenced code blocks. Cite sources where relevant and close the page with a link back to the folder index. A new or renamed page must be added to both the root [README.md](README.md) table of contents **and** the matching folder index ([`shell/README.md`](shell/README.md) or [`knowledgebase/README.md`](knowledgebase/README.md)); `npm run check:links` fails otherwise, because it validates every relative link and anchor in the repository.
+4. **Match conventions.** Follow the style of neighboring pages: plain Markdown, 2-space indent, short comment above each command. Trailing whitespace is deliberately **not** trimmed in `.md` files because it encodes hard line breaks, so do not run a bulk whitespace strip. New command flags, tool names, and proper nouns will fail the spell check — add them to the `words` array in [`.cspell.json`](.cspell.json) rather than rewording the content.
+5. **Regenerate the derived artifacts.** Editing anything under `shell/`, `knowledgebase/`, or `README.md` changes the CLI index. Run `npm run build:cli-index` and commit `assets/cli-index.json` with the content change; `npm test` fails on any drift. The pre-commit hook rebuilds and stages `assets/search-index.json` for you — and `npm test` now checks that one too, so if you commit with `--no-verify` the gate will fail until you run `npm run build:index` and commit the result.
+6. **Validate before submitting.** Check the page you changed first, then run the complete suite:
 
-- Fork the repository and create a branch for your change (use `feature/` or `fix/` prefixes).
-- Make focused, small changes and update or add files under the appropriate folder (for example `knowledgebase/` or `shell/`).
-- Open a Pull Request (PR) describing the change and link any related issue.
+   ```bash
+   npx remark --quiet --frail shell/git.md
+   npx cspell shell/git.md
+   npx markdown-link-check --config .mlc-config.json shell/git.md
 
-## Issues
+   npm test
+   ```
 
-- Open an issue to start a discussion for larger changes or new sections.
-- For bug reports include steps to reproduce and any relevant environment details.
+   `npm test` runs six gates in order: lint, links, spell, the snippet self-test, the CLI index, and the search index. The pre-commit hook applies the lint, spell, and link checks to staged files automatically.
 
-## Pull Requests
+   The link gate checks **relative links and anchors only** — it makes no network calls, so it never fails because somebody else's site is down. External URLs are checked separately by `npm run check:links:external`, which runs weekly in [`check-links.yml`](.github/workflows/check-links.yml) and is not part of the gate. If you add external links to a page, it is worth running that once yourself:
 
-- Keep PRs small and scoped to a single purpose.
-- Use clear titles and a detailed description. Reference the issue number when applicable (e.g. "Fixes #123").
-- Include examples, command output, or screenshots when helpful.
+   ```bash
+   npx markdown-link-check --config .mlc-config.external.json knowledgebase/web-development-tools.md
+   ```
 
-## Adding new cheatsheets or pages
+   Expect occasional false positives there: some hosts refuse automated requests, and a repeat run on the same commit can report a different count.
 
-- Add new Markdown files in the appropriate top-level folder (`knowledgebase/`, `shell/`, etc.).
-- Use descriptive filenames (kebab-case) and include a short header and summary at the top of the file.
-- Cite sources or references where appropriate.
+   The snippet self-test has fixtures asserting against real lines in `shell/git.md`, `shell/docker.md`, `shell/jq.md`, and `shell/linux.md`, so editing those pages can fail the gate; update the assertion in `scripts/build-snippets.mjs` rather than deleting it.
+7. **Open a pull request.** Push your `issues/` branch and open a PR against `master` with a clear description of what changed, why it changed, and how it was verified. Keep each PR scoped to a single purpose and reference the issue the branch is named for.
 
-## Freshness metadata (frontmatter)
+## Freshness metadata
 
-Every content page under `shell/` and `knowledgebase/` carries a YAML frontmatter block at the very top:
+Every content page under `shell/` and `knowledgebase/` opens with a YAML frontmatter block:
 
 ```yaml
 ---
@@ -36,8 +41,8 @@ tested_on: git 2.43
 ---
 ```
 
-- `last_reviewed` (**required**): the ISO date (`YYYY-MM-DD`) you last verified the page's content. **Update it whenever you edit a page.** This field is a manual **attestation** ("I checked this page on this date"), **not** a value derived from git — nothing computes it for you, and nothing forces you to bump it, so keeping it honest is on the contributor.
-- `tested_on` (**optional**): the tool/version the commands were verified against. It may be a **string** (`tested_on: git 2.43`) or a YAML **list** when multiple versions were checked:
+- `last_reviewed` (**required**): the ISO date (`YYYY-MM-DD`) on which you last verified the page's content. **Update it whenever you edit a page.** It is a manual attestation ("I checked this page on this date"), not a value derived from git — nothing computes it for you and nothing forces you to bump it, so keeping it honest is on the contributor. Dates are intentionally staggered to each page's real last-edited date so pages cross the staleness line gradually rather than all at once.
+- `tested_on` (**optional**): the tool version the commands were verified against. It may be a string (`tested_on: git 2.43`) or a YAML list when several versions were checked:
 
   ```yaml
   tested_on:
@@ -45,112 +50,51 @@ tested_on: git 2.43
     - git 2.44
   ```
 
-  Both forms lint and spell clean (see `shell/git.md` for a list example). Use `tested_on` on version-sensitive sheets (git, docker, node, npm); omit it on resource lists in `knowledgebase/`. **No check ever fails when `tested_on` is missing.**
+  Both forms lint and spell clean (see [`shell/git.md`](shell/git.md) for a list example). Use it on version-sensitive sheets (git, docker, node, npm) and omit it on the resource lists in `knowledgebase/`. No check ever fails when `tested_on` is missing.
 
-### Freshness badge (`npm run check:freshness`)
-
-A report-only freshness check writes the badge data in `assets/freshness-badge.json` (rendered in the README) and **always exits zero** — it never gates CI or `npm test`. Run it manually with:
-
-```bash
-npm run check:freshness
-```
-
-Badge semantics:
-
-- The badge message reads **`<N> to review`**, where `N` counts pages that are stale (`last_reviewed` older than ~6 months / 183 days), **plus** pages with a missing, invalid, or typo'd `last_reviewed`. A typo'd key (e.g. `last_reveiwed`) prints a distinct `WARN:` line in the report so it is not silently folded into "missing".
-- Badge **color is a fraction of the counted pages**: **green** when `N == 0`; **yellow** when `N` is 1–10% (inclusive) of counted pages; **red** when `N` is above 10%.
-- The two index/TOC pages (`shell/README.md`, `knowledgebase/README.md`) keep their frontmatter but are **excluded from the count** — they are navigation, not reviewable cheatsheets.
-- `last_reviewed` dates are intentionally **staggered** to each page's real last-edited date (not a single uniform date) so pages cross the staleness line gradually rather than all at once.
-
-> **Badge link-check caveat:** `npm run check:links` only validates that the outer `img.shields.io` host is reachable — it does **not** validate the nested `?url=...github.io/.../freshness-badge.json` GitHub Pages target. After a change publishes to master, a maintainer must manually open the README and confirm the badge renders a count (not "inaccessible"); shields.io caches endpoint responses for ~300s, so allow a few minutes.
-
-### Review-drift report (`npm run check:drift`)
-
-Because `last_reviewed` is an attestation, it can drift behind the page's actual last edit. A second report-only script flags pages whose git last-modified date is newer than their `last_reviewed`:
-
-```bash
-npm run check:drift
-```
-
-Like the freshness check it **always exits zero** and is **not** part of `npm test` or the pre-commit hook — it is purely informational. Use it to spot pages that were edited without bumping `last_reviewed`.
-
-### Inline version notes
-
-For commands whose behavior or flags depend on a tool version, add a leading blockquote note just under the page intro:
+For a command whose behavior depends on a tool version, add a blockquote note just under the page intro:
 
 ```markdown
 > Tested on: git 2.43
 ```
 
-## Contributor leaderboard
-
-The Contributors section in `README.md` (between the `<!-- CONTRIBUTORS:START -->` and `<!-- CONTRIBUTORS:END -->` markers) is generated offline from `git shortlog -sn HEAD` — no GitHub token or network access.
-
-The leaderboard is **auto-maintained** by the `Build leaderboard` GitHub Action (`.github/workflows/build-leaderboard.yml`), which runs weekly (Monday 06:30 UTC) plus on-demand via `workflow_dispatch` and commits any change to master as `github-actions[bot]` with `[skip ci]`. You normally do not need to touch it. To regenerate locally/offline (e.g. before a release, or while working offline):
+Two scripts read this metadata. Both are report-only: they **always exit zero**, even on parse errors, and neither is part of `npm test` or the pre-commit hook.
 
 ```bash
-npm run leaderboard
+npm run check:freshness  # writes assets/freshness-badge.json, rendered in the README
+npm run check:drift      # lists pages edited after their attested review date
 ```
 
-Notes:
+> **Current state, honestly:** `check:drift` reports most content pages as edited after their attested `last_reviewed` date. The scripts are behaving exactly as designed — they report, they never gate — but the attestations are behind the edits. Clearing that is a page-by-page review by a maintainer, not a bulk date change: rewriting every date to today would destroy the staggering that makes pages cross the staleness line gradually, and would attest to a review nobody performed. If you edit a page, update that one page's date.
 
-- **Bot identities are filtered out.** Any author whose name ends in `[bot]` (e.g. `github-actions[bot]`) is dropped, so the auto-commit workflows never appear on the leaderboard. This also absorbs the ±1 self-counting drift the bot's own commit would otherwise introduce.
-- **Generated names are spell-checked.** The names land in `README.md`, which **is** scanned by `cspell`. If a new contributor's name or handle is an unusual word, `npm test` will fail until you add it to the `words` array in `.cspell.json` (this is the intended fix — see the spell-check note in `CLAUDE.md`).
-- Duplicate author identities for one human are collapsed via `.mailmap`.
+The badge message reads `<N> to review`, where `N` counts pages whose `last_reviewed` is older than 183 days plus pages with a missing, invalid, or typo'd date. A typo'd key (e.g. `last_reveiwed`) prints a distinct `WARN:` line so it is not silently folded into "missing". The badge is green when `N` is zero, yellow up to 10% of counted pages, and red above that. The two folder index pages keep their frontmatter but are excluded from the count — they are navigation, not reviewable cheatsheets.
 
-## Auto-commit workflows
-
-Two GitHub Actions push generated artifacts to master as `github-actions[bot]` (`assets/search-index.json` is built by the pre-commit hook instead):
-
-| Workflow | Artifact | Trigger |
-|---|---|---|
-| `check-freshness.yml` | `assets/freshness-badge.json` | push to content + weekly Mon 06:00 UTC |
-| `build-leaderboard.yml` | `README.md` leaderboard block | weekly Mon 06:30 UTC + dispatch |
-
-Both:
-
-- commit with `[skip ci]` so their own push does not retrigger CI in a loop;
-- use a `git diff --quiet` guard so they only commit when the artifact actually changed;
-- share the **same concurrency group** (`auto-commit-master`, `cancel-in-progress: false`) so their `git pull --rebase` / `git push` steps **serialize** (queue) instead of racing each other on master.
-
-If branch protection is ever enabled on master, it must allow `github-actions[bot]` to push for these workflows to succeed.
+> **Badge link-check caveat:** neither link config validates the badge's nested `?url=...` GitHub Pages target. `npm run check:links` skips external URLs entirely, and `npm run check:links:external` only resolves the outer `img.shields.io` host. After a change publishes to `master`, open the README and confirm the badge renders a count rather than "inaccessible". shields.io caches endpoint responses for about 300 seconds, so allow a few minutes.
 
 ## Releasing the `ucheat` CLI (maintainers)
 
-The repository doubles as the npm package `ucheat` (`npx ucheat git stash` renders cheatsheet sections in the terminal). Editing content under `shell/`, `knowledgebase/`, or `README.md` changes the CLI index too:
+The repository doubles as the npm package `ucheat`, which renders cheatsheet sections in the terminal.
 
-```bash
-npm run build:cli-index
-git add assets/cli-index.json
-```
+> **Not published yet.** `ucheat` is not on the npm registry — `npm view ucheat` currently answers `E404`, and the name is unclaimed. Until a first release happens, the supported way to run the CLI is `node bin/ucheat.mjs` from a clone, and `npx ucheat` will not work for anyone.
 
-`npm test` includes `check:cli-index`, which rebuilds the index and fails on any uncommitted drift — so commit the regenerated `assets/cli-index.json` together with your content change.
+### First publish
 
-Manual publish checklist:
+1. Confirm the name is still free: `npm view ucheat` should answer `E404 Not Found`. Anything else means someone claimed it and the package needs renaming in [`package.json`](package.json) before going further.
+2. Run the gate: `npm test`. A publish carries `assets/cli-index.json`, so it must not be stale.
+3. Inspect the tarball without sending it: `npm publish --dry-run`. Confirm the file list is only `bin/`, `assets/cli-index.json`, `README.md`, `package.json`, and `LICENSE.md` — `files` in the manifest controls this, and anything else in the listing is a packaging mistake.
+4. `npm login` with the maintainer account, and enable two-factor auth on it first.
+5. `npm publish`. The package is unscoped, so it is public by default; `prepublishOnly` regenerates `assets/cli-index.json` before packing, so a published tarball can never ship a stale index.
+6. Smoke-test from a directory outside the repository: `npx ucheat@latest git stash`.
+7. Update this note and the [README](README.md) CLI section to describe `npx ucheat` as available rather than planned. The CLI's own help text needs no edit: [`bin/ucheat.mjs`](bin/ucheat.mjs) derives the command it prints from how it was invoked, so it says `node bin/ucheat.mjs` from a clone and `ucheat` once the bin shim is on PATH.
 
-1. Confirm the version bump in `package.json` and that `npm view ucheat` shows the name/versions as expected.
-2. `npm login` (maintainer account).
-3. `npm publish` — `prepublishOnly` regenerates `assets/cli-index.json` automatically before packing.
-4. Smoke-test from a clean directory outside the repo: `npx ucheat@latest git stash`.
+A publish is effectively permanent: npm allows unpublishing only within 72 hours, and the name stays burned afterwards. Treat step 3 as the point of no return.
 
-## Style and formatting
+### Subsequent releases
 
-- Use plain Markdown. Keep lines reasonably short and use fenced code blocks for commands.
-- Prefer clear, actionable examples and commands that have been manually verified where possible.
+1. Bump `version` in [`package.json`](package.json) and confirm `npm view ucheat versions` shows what you expect.
+2. `npm test`, then `npm publish --dry-run`, then `npm publish`.
+3. Smoke-test `npx ucheat@latest git stash` from outside the repository.
 
-## Commit messages
+Export artifacts are released separately: dispatch the [`release-export.yml`](.github/workflows/release-export.yml) workflow with a tag to build the print HTML tree and the VS Code snippet bundle and attach both to a GitHub Release.
 
-- Use concise messages describing the change. Example formats:
-  - `fix: correct typo in mysql cheatsheet`
-  - `feat: add npm script examples`
-
-## License and conduct
-
-- By contributing you agree your contributions will be licensed under the repository's MIT License (see `LICENSE`).
-- Be respectful in issues and PRs. If you think a code of conduct should be added, please open an issue.
-
-## Contact
-
-If you need to reach the maintainer directly, use <contact@zlatanstajic.com>.
-
-Thanks — we appreciate your help improving this collection!
+By contributing you agree that your contributions are licensed under the repository's [MIT License](LICENSE.md). To reach the maintainer directly, use <contact@zlatanstajic.com>.
