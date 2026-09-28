@@ -1,0 +1,43 @@
+version: 2
+
+# The npm tooling here is devDependencies plus three small CLI runtime deps, so
+# updates are grouped into one PR per ecosystem per week rather than a stream of
+# individual bumps. A dependency bump does not touch assets/cli-index.json, so
+# these PRs pass the check:cli-index gate unchanged.
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: tuesday
+      time: "06:00"
+      timezone: Etc/UTC
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: chore
+    # marked-terminal 7.3.0 is the latest release and peer-requires marked
+    # ">=1 <16", so a marked 16+ bump makes `npm ci` fail on ERESOLVE. Hold
+    # marked at 15 until marked-terminal widens that peer range.
+    ignore:
+      - dependency-name: marked
+        update-types:
+          - version-update:semver-major
+    groups:
+      dev-tooling:
+        dependency-type: development
+      cli-runtime:
+        dependency-type: production
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: tuesday
+      time: "06:00"
+      timezone: Etc/UTC
+    commit-message:
+      prefix: chore
+    groups:
+      actions:
+        patterns:
+          - "*"

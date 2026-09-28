@@ -1,3 +1,3 @@
 module.exports = {
-  plugins: ['remark-frontmatter', 'remark-preset-lint-recommended']
+  plugins: ['remark-frontmatter', 'remark-gfm', 'remark-preset-lint-recommended']
 };

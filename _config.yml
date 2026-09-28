@@ -14,6 +14,7 @@ exclude:
   - .remarkrc.js
   - .cspell.json
   - .mlc-config.json
+  - .mlc-config.external.json
   - CONTRIBUTING.md
   - LICENSE.md
   - assets/cli-index.json
