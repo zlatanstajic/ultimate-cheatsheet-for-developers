@@ -30,6 +30,7 @@
     "Zlatan",
     "Stajic",
     "autoload",
+    "autolinks",
     "autoclean",
     "autoremove",
     "cheatsheet",
@@ -83,6 +84,8 @@
     "docroot",
     "phpinfo",
     "heapsnapshot",
+    "hostnames",
+    "unpublishing",
     "SIGUSR",
     "argjson",
     "journalctl",
@@ -99,6 +102,7 @@
     "zoomable",
     "Spector",
     "exfiltration",
-    "Graphify"
+    "Graphify",
+    "pretrained"
   ]
 }

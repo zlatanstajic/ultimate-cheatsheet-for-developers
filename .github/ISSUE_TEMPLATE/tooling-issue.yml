@@ -1,0 +1,48 @@
+name: Tooling or build issue
+description: A validation script, build script, the ucheat CLI, an export, or a workflow is misbehaving.
+labels: ["tooling"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Validation gate (npm test, remark, cspell, link check)
+        - Generated index (cli-index.json or search-index.json)
+        - ucheat CLI
+        - Export (print HTML or VS Code snippets)
+        - GitHub Actions workflow
+        - Pre-commit hook
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command you ran
+      render: bash
+      placeholder: npm test
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Output you got
+      description: Paste the failure. Redact anything that looks like a credential.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected instead
+    validations:
+      required: true
+  - type: input
+    id: node
+    attributes:
+      label: Node version
+      description: Output of `node --version`. The project requires 20 or newer.
+      placeholder: v20.11.0
+    validations:
+      required: true

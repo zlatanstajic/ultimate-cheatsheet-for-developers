@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-06-08
+last_reviewed: 2026-09-16
 ---
 
 # GitHub Repos
@@ -37,6 +37,7 @@ last_reviewed: 2026-06-08
 |[Awesome Minimal Sites](https://github.com/kamranahmedse/awesome-minimal-sites)|An opinionated collection of minimal yet beautiful websites.|
 |[GitHub Issue Templates](https://github.com/stevemao/github-issue-templates)|Collection of issue and PR templates.|
 |[MD Badges](https://github.com/inttter/md-badges)|Generate and display badges for Markdown files.|
+|[TimesFM](https://github.com/google-research/timesfm)|TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting.|
 
 [⬆ back to top](#table-of-contents)
 
@@ -94,6 +95,9 @@ last_reviewed: 2026-06-08
 |[Ponytail](https://github.com/DietrichGebert/ponytail)|Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.|
 |[SkillSpector](https://github.com/NVIDIA/SkillSpector)|Security scanner for AI agent skills. Detects vulnerabilities, malicious patterns, prompt injection, data exfiltration, and supply-chain risks in Claude Code, Codex, and MCP skills before you install them.|
 |[Graphify](https://github.com/Graphify-Labs/graphify)|Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store.|
+|[Dyslexic Claude](https://github.com/schananas/dyslexic-claude)|Claude Code output style for people who find reading expensive.|
+|[Hallmark](https://github.com/Nutlope/hallmark)|Anti-slop design skill for Claude Code, Cursor, and Codex.|
+|[Brag](https://github.com/latent-spaces/brag)|You built it. Now brag. Turn the project you just created into a short, shareable launch video with one command.|
 
 [⬆ back to top](#table-of-contents)
 
@@ -111,6 +115,8 @@ last_reviewed: 2026-06-08
 |[Browsershot](https://github.com/spatie/browsershot)|Convert HTML to an image, PDF or string.|
 |[PDF to Markdown](https://github.com/iamarunbrahma/pdf-to-markdown)|Conversion of PDF documents to structured Markdown.|
 |[Odysseus](https://github.com/pewdiepie-archdaemon/odysseus)|Self-hosted AI workspace.|
+|[Codex](https://github.com/openai/codex)|Lightweight coding agent that runs in your terminal.|
+|[Browser Use](https://github.com/browser-use/browser-use)|Agents that use the browser.|
 
 [⬆ back to top](#table-of-contents)
 

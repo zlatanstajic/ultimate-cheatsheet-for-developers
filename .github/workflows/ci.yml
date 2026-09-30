@@ -6,14 +6,75 @@ on:
   pull_request:
     branches: [master]
 
+# Read-only: this workflow only runs the quality gate. It never pushes, so it
+# stays out of the auto-commit-master concurrency group used by the bot
+# workflows that do.
+permissions:
+  contents: read
+
+# Supersede a still-running check when a PR is pushed to again. Cancellation is
+# safe here precisely because nothing is written; master pushes are not
+# cancelled so every landed commit keeps its own gate result.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+# This repository has TWO Node floors, and conflating them breaks CI:
+#
+#   * the DEVELOPMENT floor is Node 22.22.1, forced by the validation tooling —
+#     cspell 10 requires >=22.18.0 and lint-staged 17 requires >=22.22.1, so an
+#     older Node cannot run `npm test` or the pre-commit hook at all;
+#   * the RUNTIME floor is Node 20, declared in package.json `engines`, and it
+#     describes the published `ucheat` CLI. Its only runtime dependencies are
+#     fuse.js, marked, and marked-terminal (Node >=18 between them), and `files`
+#     ships no devDependencies, so a consumer is never subject to the 22.22.1
+#     floor.
+#
+# The `test` job covers the development floor and the `cli` job covers the
+# runtime one. Raising `engines` to satisfy cspell would wrongly narrow who can
+# install the CLI; running the gate on Node 20 fails on tooling the CLI does not
+# use.
 jobs:
   test:
+    name: Gate (Node ${{ matrix.node-version }})
     runs-on: ubuntu-latest
+    strategy:
+      # Both versions run to completion: knowing whether a failure is
+      # version-specific or universal is the point of the matrix.
+      fail-fast: false
+      matrix:
+        # 22.22.1 is the exact development floor, so a tooling bump that raises
+        # it fails here rather than on a contributor's machine. lts/* tracks
+        # what most contributors actually run.
+        node-version: ["22.22.1", "lts/*"]
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
-          node-version: lts/*
+          node-version: ${{ matrix.node-version }}
           cache: npm
       - run: npm ci
+      # The canonical gate, unchanged from what a contributor runs locally. It
+      # makes no network calls: external link rot is checked on a schedule by
+      # check-links.yml instead, so this stays deterministic.
       - run: npm test
+
+  cli:
+    name: CLI on the engines floor (Node 20)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "20"
+          cache: npm
+      # Production dependencies only, which is what installing the published
+      # package actually gives you. `--ignore-scripts` skips `prepare`, because
+      # that installs Husky and Husky is a devDependency; a consumer installing
+      # the published tarball does not run it either.
+      - run: npm ci --omit=dev --ignore-scripts
+      # There is no CLI test suite, so these two calls are the smoke test that
+      # keeps `engines: >=20` a checked claim rather than an assumption: they
+      # exercise index loading, the help path, and one rendered section.
+      - run: node bin/ucheat.mjs --help
+      - run: node bin/ucheat.mjs git stash
