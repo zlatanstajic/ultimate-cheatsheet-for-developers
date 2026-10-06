@@ -64,7 +64,7 @@
     "marked-terminal": "^7.3.0"
   },
   "devDependencies": {
-    "cspell": "^10.3.4",
+    "cspell": "^10.3.6",
     "husky": "^9.1.7",
     "js-yaml": "^5.4.2",
     "lint-staged": "^17.6.0",
