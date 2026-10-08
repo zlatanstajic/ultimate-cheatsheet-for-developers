@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-27
+last_reviewed: 2026-10-08
 tested_on: npm 10.7
 ---
 
@@ -118,14 +118,14 @@ npm uninstall -g [package-name]
 # Install n globally
 npm install -g n
 
-# Output versions installed
+# Select and activate a downloaded node version (interactive menu)
 n
 
 # Install or activate the latest node release
 n latest
 
-# Install or activate the latest stable node release
-n stable
+# Install or activate the latest LTS node release
+n lts
 
 # Install node [version]
 n [version]
@@ -142,10 +142,10 @@ n rm [version ...]
 # Output the latest node version available
 n --latest
 
-# Output the latest stable node version available
-n --stable
+# Output the latest LTS node version available
+n --lts
 
-# Output the versions of node available
+# Output downloaded node versions
 n ls
 ```
 
@@ -153,10 +153,10 @@ n ls
 
 ## npx
 
-> Run Node.js binaries without installing them globally. Read more at [npx](https://www.npmjs.com/package/npx).
+> Run Node.js binaries without installing them globally. Read more at [npx](https://docs.npmjs.com/cli/commands/npx).
 
 ```bash
-# Kill Node.js on port number
+# Kill the process listening on a port (any process, not only Node.js)
 npx kill-port [port-number]
 ```
 

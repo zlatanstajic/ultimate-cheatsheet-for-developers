@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-27
+last_reviewed: 2026-10-08
 ---
 
 # Web Development Tools
@@ -26,7 +26,6 @@ last_reviewed: 2026-03-27
 |[Email Breaches](https://haveibeenpwned.com/)|Check if your email has been part of a data breach.|
 |[Password Generator](https://bitwarden.com/password-generator/)|Generate strong random passwords.|
 |[Flowchart Fun](https://flowchart.fun/)|Create flowcharts quickly and easily.|
-|[Installlion](https://installlion.com/)|Linux package installation guides.|
 |[JSHint - Static Code Analysis](https://jshint.com/)|JavaScript code quality tool.|
 |[Readme Creator](https://readme.so/)|Easily create README files for your projects.|
 |[Code Beautify](https://codebeautify.org/)|Online code formatter and beautifier.|
@@ -35,8 +34,8 @@ last_reviewed: 2026-03-27
 |[Meta Tags](https://metatags.io/)|Generate and preview meta tags for your website.|
 |[JSON Crack](https://jsoncrack.com/editor)|Visualize JSON data structures.|
 |[Crontab Guru](https://crontab.guru/)|Online cron schedule expression editor.|
-|[Software Licenses in Plain English](https://tldrlegal.com/)|Understand software licenses in simple terms.|
-|[GitHub Star History](https://star-history.com/)|Visualize the star growth of GitHub repositories.|
+|[Software Licenses in Plain English](https://www.tldrlegal.com/)|Understand software licenses in simple terms.|
+|[GitHub Star History](https://www.star-history.com/)|Visualize the star growth of GitHub repositories.|
 |[npm Trends](https://npmtrends.com/)|Compare npm package download counts.|
 
 [⬆ back to top](#table-of-contents)
@@ -75,7 +74,7 @@ last_reviewed: 2026-03-27
 |[Resize a PNG](https://onlinepngtools.com/resize-png)|Resize PNG images online.|
 |[PNG or JPG to SVG](https://www.pngtosvg.com/)|Convert PNG or JPG images to SVG format.|
 |[Color Calculator](https://www.sessions.edu/color-calculator/)|Generate color schemes and palettes.|
-|[Color Palette](https://www.w3schools.com/cssref/css_colors.asp)|Reference for CSS color names and codes.|
+|[Color Palette](https://www.w3schools.com/cssref/css_colors.php)|Reference for CSS color names and codes.|
 |[JPG to PDF](https://smallpdf.com/jpg-to-pdf)|Convert JPG images to PDF files.|
 |[DOCX to PDF](https://online2pdf.com/convert-docx-to-pdf)|Convert DOCX documents to PDF.|
 |[GIF optimizer](https://ezgif.com/optimize)|Optimize and compress GIF files.|
@@ -85,7 +84,7 @@ last_reviewed: 2026-03-27
 |[Lorem Picsum](https://picsum.photos/)|Generate random placeholder images.|
 |[Remove Background](https://www.remove.bg/)|Remove backgrounds from images automatically.|
 |[Profile Picture Maker](https://pfpmaker.com/)|Create professional profile pictures.|
-|[Image Compression](https://compressor.io/)|Compress images without losing quality.|
+|[Image Compression](https://compressor.io/)|Compress images using lossy or lossless compression.|
 |[Logoipsum](https://logoipsum.com/)|Free placeholder logos for design mockups.|
 |[BrowserFrame](https://browserframe.com/)|Wrap screenshots in browser frames.|
 |[Favicon](https://favicon.io/)|Generate favicons from text, images, or emojis.|

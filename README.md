@@ -32,6 +32,7 @@ A curated collection of developer cheatsheets and resource lists written in plai
   - [Pre-commit Hook](#pre-commit-hook)
 - [Open Graph Image](#open-graph-image)
 - [Contributing](#contributing)
+- [Code of Conduct](#code-of-conduct)
 - [Security](#security)
 - [License](#license)
 
@@ -265,7 +266,7 @@ Four GitHub Actions workflows run against this repository:
 |---|---|---|
 | [`ci.yml`](.github/workflows/ci.yml) | Push and pull requests to `master` | Runs the gate on Node 22.22.1 and the current LTS, plus a CLI smoke test on Node 20 |
 | [`check-links.yml`](.github/workflows/check-links.yml) | Mondays 07:00 UTC, manual | Checks external URLs in every tracked page; reports rot, gates nothing |
-| [`check-freshness.yml`](.github/workflows/check-freshness.yml) | Content pushes, Mondays 06:00 UTC, manual | Rebuilds `assets/freshness-badge.json` and commits any change |
+| [`check-freshness.yml`](.github/workflows/check-freshness.yml) | Content pushes, Mondays 06:00 UTC, manual | Rebuilds the freshness badge JSON and commits any change |
 | [`release-export.yml`](.github/workflows/release-export.yml) | Manual, takes a `tag` input | Builds both exports and attaches them to a GitHub Release |
 
 `check-freshness.yml` pushes to `master` as `github-actions[bot]` with `[skip ci]`, only when the generated file actually changed, and holds a serialized concurrency group that any further master-pushing workflow must join.
@@ -305,6 +306,14 @@ The script requires Pillow and a bold DejaVu or Liberation TrueType font. It con
 ## Contributing
 
 Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to propose a change, add a page, and keep the frontmatter and generated artifacts in sync.
+
+[⬆ back to top](#table-of-contents)
+
+---
+
+## Code of Conduct
+
+See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for participation guidelines and how to report conduct concerns.
 
 [⬆ back to top](#table-of-contents)
 

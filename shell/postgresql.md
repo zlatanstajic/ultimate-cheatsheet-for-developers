@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-27
+last_reviewed: 2026-10-08
 ---
 
 # PostgreSQL
@@ -22,14 +22,14 @@ Read more about [PostgreSQL](https://www.postgresql.org/).
 ## Connection
 
 ```bash
-# Connect to a database (prompts for password)
+# Connect to a database (prompts if password authentication is required and no password is otherwise available)
 psql -U [username] -h [host] -d [database-name]
 
 # Connect with port
 psql -U [username] -h [host] -p [port] -d [database-name]
 
-# Connect using a connection string
-psql "postgresql://[username]:[password]@[host]:[port]/[database-name]"
+# Connect using a connection string (prompts if needed; a password in the URI leaks to shell history)
+psql "postgresql://[username]@[host]:[port]/[database-name]"
 ```
 
 [⬆ back to top](#table-of-contents)
@@ -45,7 +45,7 @@ The following commands are run inside the `psql` interactive shell:
 -- Connect to a database
 \c [database-name]
 
--- List all tables in current schema
+-- List all tables in the current search path
 \dt
 
 -- Describe a table (columns, types, constraints)
@@ -60,7 +60,7 @@ The following commands are run inside the `psql` interactive shell:
 -- Show current connection info
 \conninfo
 
--- Show query execution time
+-- Toggle display of query execution time
 \timing
 
 -- Execute SQL from a file

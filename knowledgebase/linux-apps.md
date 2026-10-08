@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-27
+last_reviewed: 2026-10-08
 ---
 
 # Linux Apps

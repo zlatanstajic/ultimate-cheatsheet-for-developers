@@ -1,9 +1,11 @@
 version: 2
 
 # The npm tooling here is devDependencies plus three small CLI runtime deps, so
-# updates are grouped into one PR per ecosystem per week rather than a stream of
-# individual bumps. A dependency bump does not touch assets/cli-index.json, so
-# these PRs pass the check:cli-index gate unchanged.
+# weekly version updates are grouped rather than sent as a stream of individual
+# bumps: npm into at most two PRs (dev-tooling, cli-runtime) and GitHub Actions
+# into one. Security updates are not grouped and arrive as individual PRs. A
+# dependency bump does not touch assets/cli-index.json, so these PRs pass the
+# check:cli-index gate unchanged.
 updates:
   - package-ecosystem: npm
     directory: "/"

@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-27
+last_reviewed: 2026-10-08
 tested_on: Docker 26.0
 ---
 
@@ -68,7 +68,7 @@ docker run -d -p [host-port]:[container-port] [image-name]:[tag]
 docker run -d -v [host-path]:[container-path] [image-name]:[tag]
 
 # Run with environment variables
-docker run -d -e KEY=value [image-name]:[tag]
+docker run -d -e [KEY]=[value] [image-name]:[tag]
 
 # Run with an env file
 docker run -d --env-file .env [image-name]:[tag]
@@ -183,7 +183,7 @@ docker logs -t [container-id|container-name]
 
 ## Docker Compose
 
-> Uses the v2 plugin (`docker compose`). The standalone `docker-compose` v1 binary was deprecated in July 2023.
+> Uses the Compose plugin (`docker compose`, v2 and later). The standalone `docker-compose` v1 binary was deprecated in July 2023.
 
 ```bash
 # Start all services defined in docker-compose.yml (detached)
@@ -198,7 +198,7 @@ docker compose up -d --build
 # Stop and remove containers, networks
 docker compose down
 
-# Stop, remove containers, and delete named volumes
+# Stop and remove containers, networks, declared named volumes, and attached anonymous volumes (external volumes are kept)
 docker compose down -v
 
 # View logs for all services
@@ -207,7 +207,7 @@ docker compose logs -f
 # View logs for a specific service
 docker compose logs -f [service-name]
 
-# Run a one-off command in a service container
+# Run a command in a running service container
 docker compose exec [service-name] [command]
 
 # Scale a specific service
@@ -230,6 +230,6 @@ docker compose ps
 
 * **Never pass secrets via `--build-arg`**: build args are stored in image layer history and visible via `docker history`. Use [BuildKit secrets](https://docs.docker.com/build/building/secrets/) instead.
 * **`/bin/bash` vs `/bin/sh`**: slim and Alpine-based images often only include `/bin/sh`. Try `/bin/sh` if `/bin/bash` fails in `exec`.
-* **`docker compose` (v2)** is the current standard. If your system still has `docker-compose` (v1), upgrade to Docker Desktop ≥ 4.x or install the Compose plugin.
+* **`docker compose` (v2 and later)** is the current standard. If your system still has `docker-compose` (v1), upgrade to Docker Desktop ≥ 4.x or install the Compose plugin.
 
 [⬆ back to top](#table-of-contents)

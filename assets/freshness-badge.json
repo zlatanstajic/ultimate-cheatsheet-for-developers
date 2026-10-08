@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
   "label": "freshness",
-  "message": "14 to review",
-  "color": "red"
+  "message": "0 to review",
+  "color": "green"
 }

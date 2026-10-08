@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-27
+last_reviewed: 2026-10-08
 ---
 
 # Composer
@@ -28,14 +28,14 @@ composer init
 # List all available Composer commands
 composer list
 
-# Update all dependencies to the latest versions
+# Update dependencies to the latest versions allowed by composer.json
 composer update
 
 # Regenerate the autoload files
 composer dump-autoload
 
 # Open the package's repository URL or homepage in your browser
-composer browse
+composer browse [vendor/package-name]
 
 # Clear Composer's internal package cache
 composer clear-cache
@@ -55,7 +55,7 @@ composer show [vendor/package-name]
 composer outdated
 
 # Search for packages on Packagist
-composer search
+composer search [keyword]
 
 # Validate composer.json and composer.lock files
 composer validate
@@ -78,9 +78,8 @@ composer -V
 # Update Composer to the latest stable version
 composer self-update
 
-# Pin to a specific major version (v2 or v3)
+# Pin to the Composer 2.x stable channel
 composer self-update --2
-composer self-update --3
 ```
 
 [⬆ back to top](#table-of-contents)
@@ -88,7 +87,7 @@ composer self-update --3
 ## Packages
 
 ```bash
-# Install all dependencies listed in composer.json
+# Install dependencies using composer.lock versions when present; otherwise resolve composer.json
 composer install
 
 # Install dependencies for production (skip dev dependencies)

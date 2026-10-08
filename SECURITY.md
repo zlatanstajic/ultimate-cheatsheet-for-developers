@@ -7,10 +7,8 @@ This repository ships documentation, not a service. There is no application, no 
 | Version | Supported |
 |---|---|
 | `master` | Yes |
-| Latest published `ucheat` release | Yes |
-| Older `ucheat` releases | No — upgrade to the latest |
 
-Fixes land on `master` and, when the CLI is affected, in a new `ucheat` release. Nothing is backported.
+The `ucheat` CLI is not published to npm yet, so there are no releases to support: run it from a clone of `master`. Fixes land on `master`. Nothing is backported.
 
 ## What to report privately
 

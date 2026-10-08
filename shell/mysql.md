@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-27
+last_reviewed: 2026-10-08
 ---
 
 # MySQL
@@ -56,7 +56,7 @@ select database();
 # Export database dump (run outside MySQL shell)
 mysqldump -u [username] -p [database-name] > [filename].sql
 
-# Import database dump (run outside MySQL shell)
+# Import database dump (run outside MySQL shell; executes the SQL in the dump, which may drop and recreate tables)
 mysql -u [username] -p [database-name] < [filename].sql
 
 # Delete a database
@@ -111,7 +111,7 @@ UPDATE table_name
 SET column1 = 'value1'
 WHERE id = 1;
 
--- Delete template (WHERE 1=1 base allows safe step-by-step filter building)
+-- Delete template (deletes every row the WHERE clause matches)
 DELETE FROM table_name
 WHERE id = 1;
 ```

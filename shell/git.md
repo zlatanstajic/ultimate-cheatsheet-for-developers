@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-27
+last_reviewed: 2026-10-08
 tested_on:
   - git 2.43
   - git 2.44
@@ -43,20 +43,20 @@ git version
 # Initialize repository
 git init
 
-# Set credentials for repository (stores in plaintext on disk — use a credential manager in production)
+# Save credentials in plaintext to ~/.git-credentials, shared by all repositories (use a credential manager in production)
 git config credential.helper store
 
 # Clone repository
 git clone [repository-url]
 
-# Get differences between files
+# Show staged changes (index vs. last commit)
 git diff --staged
 
-# Reset changes to the file
+# Discard staged and unstaged changes to the file (⚠️ destructive — uncommitted changes are lost)
 git checkout HEAD -- [filename]
 
-# Restore changes to directory
-git restore -s@ -SW  -- [directory]
+# Discard staged and unstaged changes in a directory (⚠️ destructive — uncommitted changes are lost)
+git restore -s@ -SW -- [directory]
 
 # Count unpacked number of objects and their disk consumption
 git count-objects -v
@@ -74,12 +74,12 @@ git stash list
 git stash push -m "[message-content]"
 
 # Pop and apply previously stashed working changes
-git stash pop stash@{n}
+git stash pop stash@{[n]}
 
 # Only apply previously stashed working changes
-git stash apply stash@{n}
+git stash apply stash@{[n]}
 
-# Clear all stashed working changes
+# Delete all stash entries (⚠️ destructive — may be impossible to recover)
 git stash clear
 ```
 
@@ -100,20 +100,20 @@ git log -n [number-of-commits] --oneline
 # Get last n commits by author
 git log -n [number-of-commits] --author=[author-name]
 
-# Remove files from stage area
+# Stop tracking a file while keeping the working copy (stages its deletion)
 git rm --cached [filename]
 
-# Reset changes to the last commit
+# Discard all uncommitted changes to tracked files (⚠️ destructive — cannot be undone)
 git reset --hard
 
-# Reset changes to the specific commit
+# Move the branch to a specific commit (⚠️ destructive — discards later commits and uncommitted changes)
 git reset --hard [commit-hash]
 
 # Delete last n commits and force push to remote origin
 git reset --hard HEAD~[n]
 git push -f
 
-# Push commits bypassing pre-push hooks (use with caution — skips CI checks and linters)
+# Push commits bypassing the local pre-push hook (use with caution — skips the checks the hook runs; server-side CI still runs)
 git push --no-verify
 
 # Inspect a specific commit (results in detached HEAD — create a branch to keep changes)
@@ -122,18 +122,18 @@ git checkout [commit-hash]
 # Rename last commit message
 git commit --amend -m "[message-content]"
 # Prefer --force-with-lease over --force to avoid overwriting others' pushed commits
-git push --force-with-lease [branch-name]
+git push --force-with-lease origin [branch-name]
 
-# Set commit date a few days in the past
+# Set author date a few days in the past (committer date stays current)
 git commit -m "[message-content]" --date="[number-of-days] day ago"
 
-# Revert all commits (including initial)
+# Delete the current branch's entire history, keeping files staged (⚠️ destructive — commits become unreachable)
 git update-ref -d HEAD
 
 # Number of commits for branch name
 git rev-list --count [branch-name]
 
-# Number of commits across all branches
+# Number of commits reachable from all refs (including branches and tags) and HEAD
 git rev-list --all --count
 ```
 
@@ -162,7 +162,7 @@ git push origin [version-number]
 
 ```bash
 # Show current branch
-git branch
+git branch --show-current
 
 # List all branches
 git branch -a
@@ -204,10 +204,10 @@ git branch --merged
 git branch --no-merged
 
 # List all branches in local which are gone on remote
-git branch -vv | awk '/: gone]/{print $1}'
+git branch --format='%(refname:short) %(upstream:track)' | awk '$2 ~ /gone]/ {print $1}'
 
 # Delete all branches locally which are gone on remote
-git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -d
+git branch --format='%(refname:short) %(upstream:track)' | awk '$2 ~ /gone]/ {print $1}' | xargs -r git branch -d
 ```
 
 [⬆ back to top](#table-of-contents)
@@ -216,7 +216,8 @@ git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -d
 
 ```bash
 # Get global user
-git config --global --list
+git config --global user.name
+git config --global user.email
 
 # Set global user
 git config --global user.name  "[username]"
@@ -239,13 +240,13 @@ git config --local --list
 ## Remote
 
 ```bash
-# Get remote version
+# List remotes with their URLs
 git remote -v
 
 # Set remote origin URL
 git remote set-url origin [url-path]
 
-# Change directory and remote path
+# Add a second URL to origin (pushes go to every URL; fetches use only the first)
 git remote set-url --add origin [url-path]
 
 # Edit remote location
@@ -254,7 +255,7 @@ git remote rm origin
 git remote add origin [url-path]
 git push --set-upstream origin [branch-name]
 
-# Prune all unreachable objects from the remote object database
+# Delete stale remote-tracking branches (origin/* refs whose branch no longer exists on the remote)
 git remote prune origin
 ```
 
@@ -306,17 +307,17 @@ git config --global --unset alias.[alias-name]
 # log-list: Log last two changes, current status and branch
 !git log -n 2 && echo '' && echo '' && git status && echo '' && git branch
 
-# prune-list: List what should be pruned locally and remotely
+# prune-list: List stale remote-tracking branches and unreachable loose objects (dry run)
 !git remote prune origin -n && git prune -n
 
-# prune-now: Prune locally and remotely
+# prune-now: Delete stale remote-tracking branches and unreachable loose objects (⚠️ destructive — git prune permanently deletes dropped stashes and orphaned commits)
 !git remote prune origin && git prune
 
 # gone-list: List branches which can be removed locally
-!git branch -vv | awk '/: gone]/{print $1}'
+!git branch --format='%(refname:short) %(upstream:track)' | awk '$2 ~ /gone]/ {print $1}'
 
-# gone-now: Remove branches locally
-!git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D
+# gone-now: Force-delete local branches whose remote is gone (⚠️ destructive — -D also deletes unmerged branches)
+!git branch --format='%(refname:short) %(upstream:track)' | awk '$2 ~ /gone]/ {print $1}' | xargs -r git branch -D
 ```
 
 ### Setting Alias
@@ -326,7 +327,7 @@ Give a name to the alias and paste the command of your choice.
 Here's an example of how to set the `prune-list` alias:
 
 ```bash
-git config --global alias.prune-list "!git remote prune origin -n && git prune -n"
+git config --global alias.prune-list '!git remote prune origin -n && git prune -n'
 ```
 
 You can also set aliases directly inside your `.gitconfig` file, located in your home directory:

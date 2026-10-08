@@ -64,9 +64,9 @@
     "swapoff",
     "swapon",
     "HSET",
+    "askpass",
     "Xhhb",
     "symfony",
-    "Installlion",
     "knowledgebase",
     "Anthropics",
     "Apiark",
@@ -103,6 +103,7 @@
     "Spector",
     "exfiltration",
     "Graphify",
-    "pretrained"
+    "pretrained",
+    "Fooocus"
   ]
 }

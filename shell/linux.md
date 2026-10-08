@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-27
+last_reviewed: 2026-10-08
 ---
 
 # Linux
@@ -21,6 +21,8 @@ Read more about [Linux](https://www.linux.org/).
 
 [↩ back to list of cheatsheets](README.md#list-of-cheatsheets)
 
+> Commands that change system packages, services, swap, or protected files require root privileges; use `sudo` as needed.
+
 > **See also:** [cURL](curl.md) — used for downloading files and apt key management.
 
 ## Misc
@@ -38,14 +40,14 @@ killall [process_name]
 # Kill a port process
 fuser -k [port-number]/tcp
 
-# Get computer's hostname
+# Get all IP addresses of the host
 hostname -I
 
 # Clear swap space
 swapoff -a && swapon -a
 
 # Runs a sound test with static bouncing back and forth
-speaker-test --channels 2 --rate 48000 --device hw:0,3
+speaker-test --channels 2 --rate 48000 --device hw:[card],[device]
 
 # Loop command
 watch -n [number-of-seconds] [command]
@@ -63,12 +65,12 @@ uptime
 
 ```bash
 # Install & run OS configuration tools
-apt install dconf-tools && dconf-editor
+apt install dconf-editor && dconf-editor
 
 # Follow Apache error log live
 tail -f /var/log/apache2/error.log
 
-# List of apt sources
+# List of apt sources (Ubuntu 24.04+ uses /etc/apt/sources.list.d/ubuntu.sources)
 nano /etc/apt/sources.list
 
 # Go to folder with crash reports
@@ -106,7 +108,7 @@ apt list -u
 # Upgrade all packages
 apt upgrade
 
-# Clean downloaded package files
+# Remove cached package files that can no longer be downloaded
 apt autoclean
 
 # Remove unused dependencies
@@ -115,11 +117,15 @@ apt autoremove
 # Remove repository
 add-apt-repository -r ppa:[ppa-to-remove]
 
-# Add a signed repository key (modern approach; apt-key is deprecated since Ubuntu 22.04)
+# Save an ASCII-armored repository signing key as a binary keyring (apt-key is obsolete)
+sudo install -d -m 0755 /etc/apt/keyrings
 curl -fsSL [key-url] | sudo gpg --dearmor -o /etc/apt/keyrings/[keyring-name].gpg
+sudo chmod 0644 /etc/apt/keyrings/[keyring-name].gpg
 ```
 
 [⬆ back to top](#table-of-contents)
+
+The keyring must also be referenced by `Signed-By: /etc/apt/keyrings/[keyring-name].gpg` in the repository's `.sources` file (or `signed-by=` in a `.list` entry). Saving the key alone does not configure a repository. See the [APT sources reference](https://manpages.debian.org/trixie/apt/sources.list.5.en.html).
 
 ## Services
 
@@ -178,7 +184,7 @@ cp -R [source-directory] [destination-directory]
 # Move directory
 mv [directory-name] [destination-directory]
 
-# Remove directory
+# Remove an empty directory
 rm -d [directory-name]
 
 # Confirm to remove
@@ -210,7 +216,7 @@ head -n 5 [file-path]
 
 # Check if website is opened by reading remote Apache access logs
 # Usage: connect to server and follow access log
-# Example: ssh [server] && cd /var/log/apache2 && tail -f *-access.log
+# Example: ssh -t [server] 'tail -f /var/log/apache2/*-access.log'
 
 # Read file live
 tail -f [filename]

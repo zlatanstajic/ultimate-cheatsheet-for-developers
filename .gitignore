@@ -9,3 +9,4 @@ tests/
 _site/
 .jekyll-cache/
 .jekyll-metadata
+brag-*

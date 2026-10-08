@@ -7,9 +7,9 @@ name: Check external links
 #
 # The deterministic half stays blocking: `npm run check:links` validates
 # relative links only (.mlc-config.json ignores http/https/mailto), which is
-# what a contributor actually breaks by renaming a page or missing a table-of-
-# contents entry. This workflow runs the same files through
-# .mlc-config.external.json, which checks everything.
+# what a contributor actually breaks by renaming or moving a page. It does not
+# catch a page missing from a table of contents. This workflow runs the same
+# files through .mlc-config.external.json, which checks everything.
 
 on:
   schedule:

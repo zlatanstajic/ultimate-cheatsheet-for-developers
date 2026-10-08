@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-27
+last_reviewed: 2026-10-08
 ---
 
 # Learning Sources
@@ -49,8 +49,8 @@ last_reviewed: 2026-03-27
 |Name|Description|
 |---|---|
 |[React Getting Started](https://react.dev/learn)|Official React documentation for beginners.|
-|[Next.js Getting Started](https://nextjs.org/docs/getting-started/installation)|Official Next.js getting started guide.|
-|[Introduction to TypeScript](https://dev.to/shaan_alam/introduction-to-typescript-7lg)|Beginner's introduction to TypeScript.|
+|[Next.js Getting Started](https://nextjs.org/docs/app/getting-started/installation)|Official Next.js getting started guide.|
+|[Introduction to TypeScript](https://dev.to/shaancodes/introduction-to-typescript-7lg)|Beginner's introduction to TypeScript.|
 
 [⬆ back to top](#table-of-contents)
 
@@ -58,6 +58,6 @@ last_reviewed: 2026-03-27
 
 |Name|Description|
 |---|---|
-|[Laravel Community Portal](https://laravel.io/)|Official Laravel community and Q&A.|
+|[Laravel Community Portal](https://laravel.io/)|Community portal for Laravel Q&A and knowledge sharing.|
 
 [⬆ back to top](#table-of-contents)

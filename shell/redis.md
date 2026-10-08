@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-27
+last_reviewed: 2026-10-08
 ---
 
 # Redis
@@ -30,8 +30,8 @@ redis-cli
 # Connect to a remote Redis instance
 redis-cli -h [host] -p [port]
 
-# Connect with authentication
-redis-cli -h [host] -p [port] -a [password]
+# Connect with authentication (prompts for password; passing it with -a leaks it to shell history)
+redis-cli -h [host] -p [port] --askpass
 
 # Test connection
 redis-cli ping
@@ -59,7 +59,7 @@ EXISTS [key]
 # Get the type of a key
 TYPE [key]
 
-# Rename a key
+# Rename a key (overwrites the new key if it already exists)
 RENAME [key] [new-key]
 
 # Delete a key
@@ -81,7 +81,7 @@ SET [key] [value]
 GET [key]
 
 # Set a key with expiration (seconds)
-SETEX [key] [seconds] [value]
+SET [key] [value] EX [seconds]
 
 # Increment an integer value
 INCR [key]

@@ -190,7 +190,7 @@ function runChecks(snippets) {
   assert(
     "git awk: literal $ escaped, stray ] not a placeholder",
     sameBody(bodyOf("git: List all branches in local which are gone on remote"), [
-      "git branch -vv | awk '/: gone]/{print \\$1}'",
+      "git branch --format='%(refname:short) %(upstream:track)' | awk '\\$2 ~ /gone]/ {print \\$1}'",
     ]),
   );
   assert(

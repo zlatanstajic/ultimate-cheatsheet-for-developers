@@ -25,5 +25,9 @@ Read more about [Unix shell](https://en.wikipedia.org/wiki/Unix_shell).
 |🐳 [Docker](docker.md)|Container platform for building and running applications.|
 |💾 [Redis](redis.md)|In-memory data structure store for caching and data management.|
 |🐘 [PHP](php.md)|PHP command-line usage and scripting.|
+|🔑 [SSH](ssh.md)|Secure remote login and command execution.|
+|🔍 [jq](jq.md)|Command-line JSON processor.|
+|🪟 [tmux](tmux.md)|Terminal multiplexer for sessions, windows, and panes.|
+|⚙️ [systemctl](systemctl.md)|Control the systemd system and service manager.|
 
 [↩ back to main table of contents](../README.md#table-of-contents)

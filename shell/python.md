@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-02-24
+last_reviewed: 2026-10-08
 ---
 
 # Python
@@ -23,7 +23,7 @@ Read more about [Python](https://www.python.org/).
 # Show Python version
 python3 --version
 
-# Change global python version (Ubuntu/Debian)
+# Switch python3 between registered alternatives (Ubuntu/Debian; moving off the distro default breaks apt)
 sudo update-alternatives --config python3
 
 # Show path of active Python interpreter
@@ -41,8 +41,11 @@ python3 -m venv [env-name]
 # Activate virtual environment (Linux/macOS)
 source [env-name]/bin/activate
 
-# Activate virtual environment (Windows)
-[env-name]\Scripts\activate
+# Activate virtual environment (Windows cmd.exe)
+[env-name]\Scripts\activate.bat
+
+# Activate virtual environment (Windows PowerShell)
+.\[env-name]\Scripts\Activate.ps1
 
 # Deactivate virtual environment
 deactivate
@@ -56,7 +59,7 @@ rm -rf [env-name]
 ## Packages
 
 ```bash
-# Upgrade pip itself
+# Upgrade pip itself (inside a virtual environment)
 python3 -m pip install --upgrade pip
 
 # Install a package
@@ -74,7 +77,7 @@ pip list
 # List outdated packages
 pip list --outdated
 
-# Freeze installed packages to a requirements file
+# Freeze installed packages to a requirements file (overwrites requirements.txt)
 pip freeze > requirements.txt
 
 # Uninstall a package
@@ -89,7 +92,7 @@ pip show [package-name]
 ## Utilities
 
 ```bash
-# Check CSV validity
+# Show per-column statistics for a CSV file (fails on malformed rows)
 pip install csvkit
 csvstat [file-path].csv
 

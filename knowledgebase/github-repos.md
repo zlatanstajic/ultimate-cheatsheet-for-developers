@@ -38,6 +38,7 @@ last_reviewed: 2026-09-16
 |[GitHub Issue Templates](https://github.com/stevemao/github-issue-templates)|Collection of issue and PR templates.|
 |[MD Badges](https://github.com/inttter/md-badges)|Generate and display badges for Markdown files.|
 |[TimesFM](https://github.com/google-research/timesfm)|TimesFM (Time Series Foundation Model) is a pretrained time-series foundation model developed by Google Research for time-series forecasting.|
+|[Whisper](https://github.com/openai/whisper)|Robust speech recognition via large-scale weak supervision.|
 
 [⬆ back to top](#table-of-contents)
 
@@ -117,6 +118,8 @@ last_reviewed: 2026-09-16
 |[Odysseus](https://github.com/pewdiepie-archdaemon/odysseus)|Self-hosted AI workspace.|
 |[Codex](https://github.com/openai/codex)|Lightweight coding agent that runs in your terminal.|
 |[Browser Use](https://github.com/browser-use/browser-use)|Agents that use the browser.|
+|[Fooocus](https://github.com/lllyasviel/Fooocus)|Image generating software focused on prompting and generating.|
+|[Cal.diy](https://github.com/calcom/cal.diy)|Scheduling infrastructure for absolutely everyone.|
 
 [⬆ back to top](#table-of-contents)
 

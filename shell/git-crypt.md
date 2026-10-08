@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-27
+last_reviewed: 2026-10-08
 ---
 
 # Git Crypt
@@ -24,10 +24,10 @@ Read more about [git-crypt](https://github.com/AGWA/git-crypt) and [managing sec
 # Show help
 git-crypt help
 
-# Initialize git-crypt in a repository (run once, before any commits)
+# Initialize git-crypt in a repository (run once, before committing any file you want encrypted)
 git-crypt init
 
-# Grant access to a GPG user (by key ID or email)
+# Grant access to a GPG user (by key ID or email; automatically commits the encrypted key)
 git-crypt add-gpg-user [key-id|email]
 
 # Unlock repository using your GPG key
@@ -114,6 +114,6 @@ gpg --delete-secret-key [key-id]
   rm /tmp/git-crypt-key
   ```
 
-* **Re-encryption**: removing a user does not re-encrypt history. Rotate secrets if a key is compromised.
+* **No revocation**: git-crypt has no command to remove a GPG user or rotate the key, and anyone who had the key can still decrypt existing history. Rotate the secrets themselves if a key is compromised.
 
 [⬆ back to top](#table-of-contents)
