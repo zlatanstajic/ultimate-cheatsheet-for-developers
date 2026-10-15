@@ -99,6 +99,9 @@ last_reviewed: 2026-09-16
 |[Dyslexic Claude](https://github.com/schananas/dyslexic-claude)|Claude Code output style for people who find reading expensive.|
 |[Hallmark](https://github.com/Nutlope/hallmark)|Anti-slop design skill for Claude Code, Cursor, and Codex.|
 |[Brag](https://github.com/latent-spaces/brag)|You built it. Now brag. Turn the project you just created into a short, shareable launch video with one command.|
+|[Arena Skill](https://github.com/Jakeschincariol/arena-skill)|Claude Code skill that gives 100 sub-agents the same task with different strategies and picks one answer through a bracket.|
+|[REA](https://github.com/morluto/rea)|MCP server for reverse engineering anything with agents, from app behavior down to native binaries.|
+|[geo-sleuth](https://github.com/Oldcircle/geo-sleuth)|Agent skill that finds where a photo was taken using OpenStreetMap geometry, elevation skylines, satellite imagery, and street view, and shows its work.|
 
 [⬆ back to top](#table-of-contents)
 
@@ -120,6 +123,8 @@ last_reviewed: 2026-09-16
 |[Browser Use](https://github.com/browser-use/browser-use)|Agents that use the browser.|
 |[Fooocus](https://github.com/lllyasviel/Fooocus)|Image generating software focused on prompting and generating.|
 |[Cal.diy](https://github.com/calcom/cal.diy)|Scheduling infrastructure for absolutely everyone.|
+|[PhotoCraft](https://github.com/storytold/photocraft)|Open-source photo editor written from scratch in pure Rust.|
+|[MiroFish](https://github.com/666ghj/MiroFish)|Simple and universal swarm intelligence engine for predicting anything.|
 
 [⬆ back to top](#table-of-contents)
 
@@ -211,6 +216,7 @@ last_reviewed: 2026-09-16
 |[PHPCompatibility](https://github.com/PHPCompatibility/PHPCompatibility)|PHP compatibility checker for PHP_CodeSniffer.|
 |[Clockwork](https://github.com/itsgoingd/clockwork)|PHP development tool for debugging and profiling.|
 |[Pokio](https://github.com/nunomaduro/pokio)|Utility library by Nuno Maduro.|
+|[Sloppy](https://github.com/Heyosseus/sloppy)|Static analysis for the debt AI agents leave in PHP, with Claude Code hooks, git-diff review, and an MCP server.|
 
 [⬆ back to top](#table-of-contents)
 
