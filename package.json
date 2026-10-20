@@ -64,9 +64,9 @@
     "marked-terminal": "^7.3.0"
   },
   "devDependencies": {
-    "cspell": "^10.3.6",
+    "cspell": "^10.4.0",
     "husky": "^9.1.7",
-    "js-yaml": "^5.4.3",
+    "js-yaml": "^5.5.0",
     "lint-staged": "^17.6.0",
     "lunr": "2.3.9",
     "markdown-link-check": "^3.15.0",
