@@ -6,7 +6,7 @@ Guidance for any coding agent working in this repository, and the single source 
 
 This is a content repository, not an application. The deliverable is Markdown: command cheatsheets under `shell/` and curated resource lists under `knowledgebase/`. Everything else exists to publish, validate, or repackage that Markdown — a Jekyll site on GitHub Pages, a browser search index, the `ucheat` terminal CLI, and two offline export builders. There is no application code, no database, no server, and no `.env`.
 
-The consequence that matters: several checked-in artifacts are **derived from the Markdown**, and one of them is gated. Editing a content page is rarely a one-file change.
+The consequence that matters: several checked-in artifacts are **derived from the Markdown**, and both content indexes are gated. Editing a content page is rarely a one-file change.
 
 ## Commands
 

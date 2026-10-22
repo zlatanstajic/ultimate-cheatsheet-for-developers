@@ -42,7 +42,7 @@ body:
     id: node
     attributes:
       label: Node version
-      description: Output of `node --version`. The project requires 20 or newer.
-      placeholder: v20.11.0
+      description: Output of `node --version`. Development tooling requires 22.22.1 or newer; the CLI alone supports 20 or newer.
+      placeholder: v22.22.1
     validations:
       required: true

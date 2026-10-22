@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: "Release tag to create or attach the assets to"
+        description: "Existing tag to build and create or update a release for"
         required: true
 
 permissions:
@@ -20,6 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          # Build the tagged source, even when dispatched from a different branch.
+          ref: refs/tags/${{ inputs.tag }}
       - uses: actions/setup-node@v7
         with:
           node-version: lts/*

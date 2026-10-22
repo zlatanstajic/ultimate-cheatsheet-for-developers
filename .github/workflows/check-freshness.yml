@@ -33,6 +33,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          # Manual dispatch may select another branch; this bot always owns master.
+          ref: master
       - uses: actions/setup-node@v7
         with:
           node-version: lts/*
@@ -49,5 +52,5 @@ jobs:
             git add assets/freshness-badge.json
             git commit -m "chore: refresh freshness badge [skip ci]"
             git pull --rebase origin master
-            git push
+            git push origin HEAD:master
           )
