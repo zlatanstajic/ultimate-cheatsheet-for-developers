@@ -61,7 +61,7 @@
   "dependencies": {
     "fuse.js": "^7.5.0",
     "marked": "^15.0.0",
-    "marked-terminal": "^7.3.0"
+    "marked-terminal": "^8.0.0"
   },
   "devDependencies": {
     "cspell": "^10.4.0",
