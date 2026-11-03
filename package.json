@@ -77,6 +77,6 @@
     "remark-parse": "^11.0.0",
     "remark-preset-lint-recommended": "^7.0.0",
     "unified": "^11.0.5",
-    "unist-util-visit": "^5.1.0"
+    "unist-util-visit": "^5.2.0"
   }
 }
