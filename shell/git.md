@@ -286,6 +286,24 @@ git branch -m new-master master
 git push -f origin master
 ```
 
+### Sync another clone after rewriting history
+
+After replacing `master` with an orphan branch and force-pushing, another clone still has the old, unrelated history. Fetch and reset its local `master` to match `origin/master`.
+
+Save any uncommitted work separately before running these commands. The backup branch preserves old commits only; `reset --hard` discards uncommitted changes to tracked files and can overwrite untracked files that are in the way.
+
+```bash
+# Switch to the branch whose remote history was replaced
+git switch master
+
+# Preserve the old local commits (choose an unused backup branch name)
+git branch backup-before-reset
+
+# Fetch the rewritten history and replace local master (⚠️ destructive — see warning above)
+git fetch origin
+git reset --hard origin/master
+```
+
 [⬆ back to top](#table-of-contents)
 
 ## Alias

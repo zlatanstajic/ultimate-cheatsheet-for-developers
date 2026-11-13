@@ -6,7 +6,7 @@ body:
     attributes:
       value: |
         For a command that is destructive or exposes a secret without the page
-        warning about it, stop here and follow [SECURITY.md](../blob/master/SECURITY.md) instead.
+        warning about it, stop here and follow [SECURITY.md](https://github.com/zlatanstajic/ultimate-cheatsheet-for-developers/blob/master/SECURITY.md) instead.
   - type: input
     id: page
     attributes:

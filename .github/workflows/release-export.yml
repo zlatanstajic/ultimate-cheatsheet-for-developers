@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: "Release tag to create or attach the assets to"
+        description: "Existing tag to build and create or update a release for"
         required: true
 
 permissions:
@@ -20,6 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          # Build the tagged source, even when dispatched from a different branch.
+          ref: refs/tags/${{ inputs.tag }}
       - uses: actions/setup-node@v7
         with:
           node-version: lts/*
@@ -31,7 +34,7 @@ jobs:
       # SHA-pinned: third-party action in a contents: write job, so a moved tag
       # must not silently change what runs. Dependabot bumps the pin and the
       # trailing version comment together.
-      - uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
+      - uses: softprops/action-gh-release@8a0cd651e5b2365bd640854a3fa5dfc70e4875f3 # v3.0.4
         with:
           tag_name: ${{ inputs.tag }}
           files: |

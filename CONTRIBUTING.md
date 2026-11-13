@@ -19,6 +19,8 @@ Contributions are welcome. All participants must follow the [Code of Conduct](CO
 
    `npm test` runs six gates in order: lint, links, spell, the snippet self-test, the CLI index, and the search index. The pre-commit hook applies the lint, spell, and link checks to staged files automatically.
 
+   Both index checks compare regenerated output with `HEAD`, so correct, uncommitted content and index changes still produce a diff failure. Run `npm run build:cli-index` and `npm run build:index` explicitly before reviewing the generated changes; the first index failure stops `npm test` before it reaches the second check. Commit each index with its source changes, then rerun the suite.
+
    The link gate checks **relative links and anchors only** — it makes no network calls, so it never fails because somebody else's site is down. External URLs are checked separately by `npm run check:links:external`, which runs weekly in [`check-links.yml`](.github/workflows/check-links.yml) and is not part of the gate. If you add external links to a page, it is worth running that once yourself:
 
    ```bash
@@ -65,7 +67,7 @@ npm run check:freshness  # writes assets/freshness-badge.json, rendered in the R
 npm run check:drift      # lists pages edited after their attested review date
 ```
 
-> **Current state, honestly:** `check:drift` reports most content pages as edited after their attested `last_reviewed` date. The scripts are behaving exactly as designed — they report, they never gate — but the attestations are behind the edits. Clearing that is a page-by-page review by a maintainer, not a bulk date change: rewriting every date to today would destroy the staggering that makes pages cross the staleness line gradually, and would attest to a review nobody performed. If you edit a page, update that one page's date.
+> **Review drift:** run `check:drift` to see which content pages were edited after their attested `last_reviewed` date. Clearing drift requires a page-by-page review by a maintainer: rewriting every date to today would attest to a review nobody performed. Update a page's date only after verifying its content, rather than after every edit.
 
 The badge message reads `<N> to review`, where `N` counts pages whose `last_reviewed` is older than 183 days plus pages with a missing, invalid, or typo'd date. A typo'd key (e.g. `last_reveiwed`) prints a distinct `WARN:` line so it is not silently folded into "missing". The badge is green when `N` is zero, yellow up to 10% of counted pages, and red above that. The two folder index pages keep their frontmatter but are excluded from the count — they are navigation, not reviewable cheatsheets.
 
@@ -87,7 +89,7 @@ The repository doubles as the npm package `ucheat`, which renders cheatsheet sec
 6. Smoke-test from a directory outside the repository: `npx ucheat@latest git stash`.
 7. Update this note and the [README](README.md) CLI section to describe `npx ucheat` as available rather than planned, and add the supported `ucheat` releases to the table in [SECURITY.md](SECURITY.md). The CLI's own help text needs no edit: [`bin/ucheat.mjs`](bin/ucheat.mjs) derives the command it prints from how it was invoked, so it says `node bin/ucheat.mjs` from a clone and `ucheat` once the bin shim is on PATH.
 
-A publish is effectively permanent: npm allows unpublishing only within 72 hours, and the name stays burned afterwards. Treat step 3 as the point of no return.
+Step 3 previews the package without publishing it. Review that file list before step 5, which sends the release to the registry.
 
 ### Subsequent releases
 
@@ -95,6 +97,6 @@ A publish is effectively permanent: npm allows unpublishing only within 72 hours
 2. `npm test`, then `npm publish --dry-run`, then `npm publish`.
 3. Smoke-test `npx ucheat@latest git stash` from outside the repository.
 
-Export artifacts are released separately: dispatch the [`release-export.yml`](.github/workflows/release-export.yml) workflow with a tag to build the print HTML tree and the VS Code snippet bundle and attach both to a GitHub Release.
+Export artifacts are released separately: dispatch the [`release-export.yml`](.github/workflows/release-export.yml) workflow with an existing tag. The workflow checks out that tag, builds the print HTML tree and the VS Code snippet bundle from its content, and attaches both to the corresponding GitHub Release.
 
 By contributing you agree that your contributions are licensed under the repository's [MIT License](LICENSE.md). To reach the maintainer directly, use <contact@zlatanstajic.com>.

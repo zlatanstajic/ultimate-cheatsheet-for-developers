@@ -104,6 +104,9 @@
     "exfiltration",
     "Graphify",
     "pretrained",
-    "Fooocus"
+    "Fooocus",
+    "Hypit",
+    "LLMAPI",
+    "Immich"
   ]
 }
