@@ -241,6 +241,8 @@ npm test
 
 That runs six gates in order: `lint:md`, `check:links`, `spell`, `check:snippets`, `check:cli-index`, `check:index`.
 
+Both index checks rebuild their artifact and compare it with `HEAD`. After a content edit, regenerate both indexes with `npm run build:cli-index` and `npm run build:index`; the index gates still report a diff until the content and generated artifacts are committed together. This is expected for uncommitted changes, even when generation succeeds. Because the CLI check runs first, its failure prevents the search-index check from running in that invocation.
+
 `check:links` validates relative links and in-page anchors only, so the gate makes no network calls and cannot fail because a third-party site is down. External URLs are checked by `npm run check:links:external`, which runs weekly rather than on every push.
 
 The lint, link, and spell scripts enumerate **tracked** Markdown with `git ls-files`, so a brand-new page is not checked until it has been `git add`ed once. There is no single-file runner; to check one file, call the tool directly:
@@ -267,7 +269,7 @@ Four GitHub Actions workflows run against this repository:
 | [`ci.yml`](.github/workflows/ci.yml) | Push and pull requests to `master` | Runs the gate on Node 22.22.1 and the current LTS, plus a CLI smoke test on Node 20 |
 | [`check-links.yml`](.github/workflows/check-links.yml) | Mondays 07:00 UTC, manual | Checks external URLs in every tracked page; reports rot, gates nothing |
 | [`check-freshness.yml`](.github/workflows/check-freshness.yml) | Content pushes, Mondays 06:00 UTC, manual | Rebuilds the freshness badge JSON and commits any change |
-| [`release-export.yml`](.github/workflows/release-export.yml) | Manual, takes a `tag` input | Builds both exports and attaches them to a GitHub Release |
+| [`release-export.yml`](.github/workflows/release-export.yml) | Manual, takes an existing `tag` input | Checks out that tag, builds both exports, and attaches them to its GitHub Release |
 
 `check-freshness.yml` pushes to `master` as `github-actions[bot]` with `[skip ci]`, only when the generated file actually changed, and holds a serialized concurrency group that any further master-pushing workflow must join.
 

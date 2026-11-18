@@ -38,9 +38,7 @@ const toolFiles = new Map();
 
 function collectFile(absPath) {
   const relPath = relative(root, absPath).split("\\").join("/");
-  // Tool name derives from the filename ("git" from shell/git.md). README/TOC
-  // pages are navigation, not tools, so they map to "" and stay out of the
-  // CLI's tool list.
+  // Tool name derives from the filename ("git" from shell/git.md).
   // Lowercased so the CLI's case-insensitive lookup always finds it, whatever
   // the filename casing. READMEs take a navigational tool name — the directory
   // for shell/README.md and knowledgebase/README.md, "readme" for the root —
